@@ -1,0 +1,19 @@
+/* 图片显示规则：版心内居中、不超容器；点击放大由 glightbox 插件负责 */
+.md-typeset img {
+  max-width: 100%;
+}
+.md-typeset div[style*="text-align"] img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* 宽表格在窄屏可横向滚动（保持全宽不被裁） */
+.md-typeset__table {
+  display: block;
+  overflow-x: auto;
+}
+/* 高亮 mark 在深色模式下可读 */
+.md-typeset mark {
+  border-radius: 3px;
+  padding: 0 2px;
+}

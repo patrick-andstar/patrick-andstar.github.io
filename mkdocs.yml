@@ -1,0 +1,68 @@
+site_name: wjc-wiki
+site_description: 我的技术书学习笔记 · 原文全保留 + AI 梳理（OI-Wiki 风格）
+site_url: https://wjc-wiki.example.io/
+docs_dir: docs
+theme:
+  name: material
+  language: zh
+  palette:
+  - media: '(prefers-color-scheme: light)'
+    scheme: default
+    primary: white
+    accent: red
+    toggle:
+      icon: material/weather-sunny
+      name: 切到深色
+  - media: '(prefers-color-scheme: dark)'
+    scheme: slate
+    primary: blue
+    accent: blue
+    toggle:
+      icon: material/weather-night
+      name: 切到浅色
+  features:
+  - navigation.tabs
+  - navigation.instant
+  - navigation.top
+  - navigation.indexes
+  - content.code.copy
+  - search.highlight
+  font:
+    text: Fira Sans
+    code: Fira Mono
+  icon:
+    logo: material/school
+nav:
+- 首页: index.md
+- 书籍:
+  - CTF特训营: books/ctf-special-training/00-目录.md
+markdown_extensions:
+- admonition
+- def_list
+- footnotes
+- meta
+- toc:
+    permalink: ''
+    slugify: !!python/name:pymdownx.slugs.uslugify
+- pymdownx.arithmatex:
+    generic: true
+- pymdownx.caret
+- pymdownx.details
+- pymdownx.highlight
+- pymdownx.inlinehilite
+- pymdownx.keys
+- pymdownx.magiclink
+- pymdownx.mark
+- pymdownx.smartsymbols
+- pymdownx.superfences
+- pymdownx.tasklist
+- pymdownx.tilde
+- pymdownx.tabbed
+plugins:
+- search
+- glightbox
+extra_css:
+- assets/stylesheets/extra.css
+extra_javascript:
+- assets/vendor/mathjax/tex-mml-chtml.js
+- assets/vendor/mermaid/mermaid.min.js
