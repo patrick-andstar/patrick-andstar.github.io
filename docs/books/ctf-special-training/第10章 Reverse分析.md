@@ -34,17 +34,17 @@
 
 点击右键，选择中文搜索引擎选项，根据需要选择搜索ASCII或者搜索UNICODE，如图10-3所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00022_img_in_image_box_153_137_1081_1268.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00022_img_in_image_box_153_137_1081_1268.webp){ width="75%" }
 
 
 *图10-1 在IDA中查找字符串*
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00023_img_in_image_box_153_137_1080_875.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00023_img_in_image_box_153_137_1080_875.webp){ width="75%" }
 
 
 *图10-2 在OD中找到主模块*
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00024_img_in_image_box_150_146_1081_1429.webp){ width="76%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00024_img_in_image_box_150_146_1081_1429.webp){ width="76%" }
 
 *图10-3 在OD中搜索字符串*
 
@@ -65,7 +65,7 @@
 
 “ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/”，那么基本上就可以确定使用了base64，如图10-4所示。此外，还有一些变种的base64，主要是改变了这个索引表。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00027_img_in_image_box_148_146_1073_1086.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00027_img_in_image_box_148_146_1073_1086.webp){ width="75%" }
 
 
 *图10-4 base64加密算法的反编译伪代码*
@@ -111,7 +111,7 @@ void decrypt(uint32_t*v, uint32_t*k) {
 
 AES也是常见的分组加密算法，多次出现在CTF中。AES的加解密流程如图10-5所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00030_img_in_image_box_196_148_1058_1402.webp){ width="70%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00030_img_in_image_box_196_148_1058_1402.webp){ width="70%" }
 
 
 加密
@@ -139,7 +139,7 @@ static const uint32 RSb[256] =
 
 如果发现程序中有S盒或者动态生成了S盒，则可以确定采用了AES加密。在2014 ISCC的Reverse7程序脱壳后，sub_4013B0函数就是一个AES加密，如图10-6所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00033_img_in_image_box_198_344_986_839.webp){ width="64%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00033_img_in_image_box_198_344_986_839.webp){ width="64%" }
 
 
 *图10-6 AES加密算法的主要逻辑*
@@ -354,7 +354,7 @@ v3 = std::operator==<char,std::char_traits<char>,std::allocator<char>((std::stri
 
 change函数如图10-12所示，首先建立了一个to_string(i)与v22[i]的map，然后，将input转化为二进制的字符串，每次取6字节，转化为一个整数，接着查询map，得到对应的输出字节，所以可以确定其为变种的base64。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00041_img_in_image_box_151_127_1082_888.webp){ width="76%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00041_img_in_image_box_151_127_1082_888.webp){ width="76%" }
 
 
 *图10-12 change函数的反编译代码*
@@ -389,13 +389,13 @@ print flag
 
 手动尝试，发现当输入只有第1字节不同时，输出也只有第1字节不同。经过多次尝试，可以确定其为线性变换，如图10-14所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00043_img_in_image_box_168_144_1058_506.webp){ width="72%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00043_img_in_image_box_168_144_1058_506.webp){ width="72%" }
 
 
 *图10-13 cipher程序运行结果*
 
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00043_img_in_image_box_242_599_982_1102.webp){ width="60%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00043_img_in_image_box_242_599_982_1102.webp){ width="60%" }
 
 
 *图10-14 根据输出结果推断为线性变换*
@@ -484,7 +484,7 @@ if (*((_DWORD *)v16 - 3) < 40) // size
 
 第一个函数sub_401380（如图10-17所示），比较明显地用到了我们熟悉的base64字符串，所以该函数为base64加密。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00047_img_in_image_box_149_137_1047_431.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00047_img_in_image_box_149_137_1047_431.webp){ width="73%" }
 
 
 *图10-17 sub_401380函数的反编译代码*
@@ -725,13 +725,13 @@ flag = found.solver.eval(argv1, cast_to=bytes)
 
 用IDA打开程序，发现加入了花指令，如图10-21所示。可以看出，在4010dd处插入了两个无用的字节，影响了IDA的反汇编，将这两个无用字节修改为nop指令，可以去除该花指令，如图10-22所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00000_img_in_image_box_154_139_1055_470.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00000_img_in_image_box_154_139_1055_470.webp){ width="73%" }
 
 
 *图10-21 花指令影响IDA的反汇编*
 
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00000_img_in_image_box_153_559_1037_972.webp){ width="72%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00000_img_in_image_box_153_559_1037_972.webp){ width="72%" }
 
 
 *图10-22 通过patch去除花指令*
@@ -790,13 +790,13 @@ int main (int argc, char *argv[])
 
 读取/proc/self/目录下的部分文件，根据程序在调试和非调试状态下的文件的不同来进行反调试。例如，/proc/self/status在非调试状态下，则TracerPid为0，如图10-23所示。但若处于调试状态下，则TracePid不为0，而是跟踪进程的Pid号，如图10-24所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00003_img_in_image_box_307_538_911_781.webp){ width="49%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00003_img_in_image_box_307_538_911_781.webp){ width="49%" }
 
 
 *图10-23 非调试状态下/proc/self/status文件的内容*
 
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00003_img_in_image_box_301_876_922_1128.webp){ width="50%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00003_img_in_image_box_301_876_922_1128.webp){ width="50%" }
 
 
 *图10-24 调试状态下/proc/self/status文件的内容*
@@ -818,7 +818,7 @@ int main (int argc, char *argv[])
 
 其中，sub_4007A8函数如图10-26所示，通过ptrace对调试器进行检查，如果检查到调试器，则进入一个while死循环。对这个函数进行patch，可以跳过对调试器的检查。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00004_img_in_image_box_202_1246_999_1357.webp){ width="65%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00004_img_in_image_box_202_1246_999_1357.webp){ width="65%" }
 
 
 *图10-25 r100.bin中的.init_array*
@@ -859,7 +859,7 @@ int64 sub_4007A8()
 
 本节所列举的实例来自2014 ISCC的一个逆向题。首先使用工具PEiD进行查询，发现是ASProtect壳，如图10-27所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00007_img_in_image_box_153_144_1077_844.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00007_img_in_image_box_153_144_1077_844.webp){ width="75%" }
 
 
 *图10-27 PEiD查壳结果*
@@ -867,14 +867,14 @@ int64 sub_4007A8()
 
 搜索ASProtect 1.2x～1.3x，可以找到对应的脱壳脚本，链接地址为http://bbs.pediy.com/showthread.php?t=89342。在OD中通过插件ODbgScript运行该脚本，如图10-28所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00008_img_in_image_box_150_143_1080_1321.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00008_img_in_image_box_150_143_1080_1321.webp){ width="75%" }
 
 
 *图10-28 在OD中运行脱壳脚本*
 
 脚本运行完成之后，查看OD中的记录，如图10-29所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00009_img_in_image_box_257_232_965_482.webp){ width="57%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00009_img_in_image_box_257_232_965_482.webp){ width="57%" }
 
 
 *图10-29 脚本运行完成后OD中的记录*
@@ -884,7 +884,7 @@ int64 sub_4007A8()
 
 然后，使用LordPE将内存dump下来，找到对应的进程，点击右键，选择完整转存，将其转存为dumped.exe，如图10-30所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00010_img_in_image_box_154_177_1078_1082.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00010_img_in_image_box_154_177_1078_1082.webp){ width="75%" }
 
 
 *图10-30 使用LordPE进行内存dump*
@@ -1030,7 +1030,7 @@ return 0xE0AF8A0LL;
 
 查看对应的汇编代码，如图10-33所示，可以发现，最后“mov rsp, rax”更改了堆栈。程序在retn之后会根据位于EOAF8A0中的ROP链来执行。继续单步执行，可以看见程序的控制流被完全混淆了。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00015_img_in_image_box_256_1079_877_1359.webp){ width="50%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00015_img_in_image_box_256_1079_877_1359.webp){ width="50%" }
 
 
 *图10-33 r0ops的部分汇编代码*
@@ -1185,7 +1185,7 @@ Debug Blocker技术的特点如下。
 
 用IDA打开debug.exe，IDA自动停留到main函数处，不过此处的main不能反编译，只能看反汇编代码。如图10-34所示，程序首先用CreateMutexA尝试创建了一个名为ALICTF:Bigtang的互斥体，成功或者失败将会对应跳转到不同的函数中。对于双进程而言，父进程是第一次创建，会返回成功，而子进程会因为互斥体已经存在而返回失败，所以可以知道后面的两个函数分别为parent_handle和child_handle。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00022_img_in_image_box_150_134_1061_982.webp){ width="74%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00022_img_in_image_box_150_134_1061_982.webp){ width="74%" }
 
 
 *图10-34 通过互斥体区分父子进程*
@@ -1197,7 +1197,7 @@ parent_handle，对应的地址为4014D0，主要处理逻辑如图10-35所示�
 
 异或操作，并将EIP寄存器增加2；当异常地址为4014B9时，对407040处的16字节进行与0x31的异或操作，并将4014B9处的2字节修改为E8B2。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00023_img_in_image_box_146_347_986_1109.webp){ width="68%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00023_img_in_image_box_146_347_986_1109.webp){ width="68%" }
 
 
 *图10-35 父进程的主要处理逻辑*
@@ -1207,7 +1207,7 @@ parent_handle，对应的地址为4014D0，主要处理逻辑如图10-35所示�
 
 出非法指令异常，而父进程能够接收到这个异常，并对此处进行patch。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00024_img_in_image_box_150_285_1080_879.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00024_img_in_image_box_150_285_1080_879.webp){ width="75%" }
 
 
 *图10-36 子进程的原始代码*
@@ -1215,7 +1215,7 @@ parent_handle，对应的地址为4014D0，主要处理逻辑如图10-35所示�
 
 patch后的代码如图10-37所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00025_img_in_image_box_146_130_1088_707.webp){ width="76%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00025_img_in_image_box_146_130_1088_707.webp){ width="76%" }
 
 
 *图10-37 子进程patch后的代码*
@@ -1307,7 +1307,7 @@ print flag
 
 本节所列举的实例来自2015 zctf simulator，题目提供了一个simulator程序和一个input.bin文件，运行方式为“./simulator input.bin”。用IDA打开simulator，首先查看main函数，如图10-39所示，通过简单分析，可以猜测3个子函数的大致功能。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00029_img_in_image_box_155_702_1049_1080.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00029_img_in_image_box_155_702_1049_1080.webp){ width="73%" }
 
 
 *图10-39 simulator的主i函数*
@@ -1317,7 +1317,7 @@ print flag
 
 示。可以看出VM有16个通用寄存器vreg、一个指令指针寄存器vpc、一个堆栈寄存器vsp和一个状态标识寄存器v_flag。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00030_img_in_image_box_225_294_988_668.webp){ width="62%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00030_img_in_image_box_225_294_988_668.webp){ width="62%" }
 
 
 *图10-40 simulator的vm_init函数*
@@ -1563,7 +1563,7 @@ C#、Java等解释型语言编译后会变为字节码，幸运的是，大多�
 
 .NET程序用查壳工具PEiD识别结果为Microsoft Visual C#/Basic.NET，如图10-43所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00039_img_in_image_box_295_764_928_1124.webp){ width="51%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00039_img_in_image_box_295_764_928_1124.webp){ width="51%" }
 
 
 *图10-43 使用PEiD识别程序是否为.NET*
@@ -1571,7 +1571,7 @@ C#、Java等解释型语言编译后会变为字节码，幸运的是，大多�
 
 使用IDA打开.NET程序时，在加载文件类型中会多出一个Microsoft.NET assembly选项，如图10-44所示，不过IDA只能反汇编出.NET的字节码，所以还需要专门的工具对.NET进行反编译。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00040_img_in_image_box_170_139_1055_815.webp){ width="72%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00040_img_in_image_box_170_139_1055_815.webp){ width="72%" }
 
 
 *图10-44 使用IDA识别程序是否为.NET*
@@ -1581,7 +1581,7 @@ C#、Java等解释型语言编译后会变为字节码，幸运的是，大多�
 
 .NET Reflector是反编译.NET程序的神器，可以在吾爱破解论坛中下载该工具。在.NET Reflector中，选择File→Open Assembly，然后选择要分析的exe程序，这样要分析的程序就被加入工具的左边栏中，逐层点开可以看到程序的Main函数，如图10-45所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00041_img_in_image_box_153_139_1081_1012.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00041_img_in_image_box_153_139_1081_1012.webp){ width="75%" }
 
 
 *图10-45 使用.NET Reflector对.NET程序进行反编译*
@@ -1589,7 +1589,7 @@ C#、Java等解释型语言编译后会变为字节码，幸运的是，大多�
 
 点击Main函数，从Main开始分析程序。Main函数的反编译代码如图10-46所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00042_img_in_image_box_263_137_808_856.webp){ width="44%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00042_img_in_image_box_263_137_808_856.webp){ width="44%" }
 
 
 *图10-46 Main函数的反编译代码*
@@ -1599,7 +1599,7 @@ C#、Java等解释型语言编译后会变为字节码，幸运的是，大多�
 
 使用nc监听31337端口，命令为“nc.exe - lvp 31337”，然后运行reverse100.exe，成功接收到flag，如图10-47所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00043_img_in_image_box_255_143_970_251.webp){ width="58%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00043_img_in_image_box_255_143_970_251.webp){ width="58%" }
 
 
 *图10-47 监听31337端口接收flag*
@@ -1609,14 +1609,14 @@ C#、Java等解释型语言编译后会变为字节码，幸运的是，大多�
 
 通过.NET Reflector打开被混淆过的.NET程序，可以看到，函数名称及函数的可读性都很差，如图10-48所示，所有的函数名都被颠倒了。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00043_img_in_image_box_281_653_946_1344.webp){ width="54%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00043_img_in_image_box_281_653_946_1344.webp){ width="54%" }
 
 
 *图10-48 混淆后的函数名*
 
 de4dot是一个强大的.NET反混淆工具，运行“de4dot.exe CrackMe2.exe”，可以在当前目录下生成一个文件名为CrackMe2-cleaned.exe的程序，如图10-49所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00044_img_in_image_box_154_349_1079_611.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00044_img_in_image_box_154_349_1079_611.webp){ width="75%" }
 
 
 *图10-49 使用de4dot反混淆*
@@ -1624,7 +1624,7 @@ de4dot是一个强大的.NET反混淆工具，运行“de4dot.exe CrackMe2.exe�
 
 使用.NET Reflector打开CrackMe2-cleaned.exe，可以比较容易地找到按钮对应的处理函数，如图10-50所示。分析button_0_Click函数即可得到flag。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00045_img_in_image_box_261_135_943_826.webp){ width="55%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00045_img_in_image_box_261_135_943_826.webp){ width="55%" }
 
 
 *图10-50 反混淆后的函数名*
@@ -1641,14 +1641,14 @@ pyInstaller（http://www.pyinstaller.org/）。
 
 通过IDA Pro打开要分析的程序，查看程序中的字符串，如果看到有PY2EXE_VERBOSE和较多以Py开头的字符串，如图10-51所示，那么基本就可以确定这个程序是用py2exe进行打包的。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00046_img_in_image_box_223_942_940_1224.webp){ width="58%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00046_img_in_image_box_223_942_940_1224.webp){ width="58%" }
 
 
 *图10-51 py2exe打包程序的识别*
 
 使用pyInstaller打包的程序中依然存在较多以Py开头的字符串，如图10-52所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00047_img_in_image_box_155_280_1058_553.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00047_img_in_image_box_155_280_1058_553.webp){ width="73%" }
 
 
 *图10-52 pyInstaller打包程序的识别*
@@ -1660,7 +1660,7 @@ pyInstaller（http://www.pyinstaller.org/）。
 
 （https://github.com/matiasb/unpy2exe）可以得到pyc文件，如图10-53所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00047_img_in_image_box_283_953_942_1121.webp){ width="53%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00047_img_in_image_box_283_953_942_1121.webp){ width="53%" }
 
 
 *图10-53 py2exe打包程序的提取*
@@ -1670,7 +1670,7 @@ pyInstaller（http://www.pyinstaller.org/）。
 
 （https://github.com/Ravensss/pyinstxtractor）可以得到pyc文件，如图10-54所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00048_img_in_image_box_154_141_1077_436.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00048_img_in_image_box_154_141_1077_436.webp){ width="75%" }
 
 
 *图10-54 pyinstaller打包程序的提取*
@@ -1678,7 +1678,7 @@ pyInstaller（http://www.pyinstaller.org/）。
 
 生成的字节码文件（.pyc文件）的前8字节通常为03 f30d 0a 76 ed db 57，如图10-55所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00048_img_in_image_box_154_688_1066_795.webp){ width="74%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00048_img_in_image_box_154_688_1066_795.webp){ width="74%" }
 
 
 *图10-55 pyc文件的文件头*
@@ -1686,7 +1686,7 @@ pyInstaller（http://www.pyinstaller.org/）。
 
 但有时pyinstxtractor.py提取出来的字节码文件缺少最开始的8字节，如图10-56所示，此时需要手动在文件开始处增加缺失的那8字节。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00048_img_in_image_box_159_1097_1062_1192.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00048_img_in_image_box_159_1097_1062_1192.webp){ width="73%" }
 
 
 *图10-56 缺少文件头的pyc文件*
@@ -1708,7 +1708,7 @@ Java程序打包成的EXE在CTF中出现的次数不多，一个常用的打包�
 
 如果在没有提前安装好JDK或JRE环境的系统中运行EXE，将会直接报错，报错信息如图10-57所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00050_img_in_image_box_150_705_1079_803.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00050_img_in_image_box_150_705_1079_803.webp){ width="75%" }
 
 
 *图10-57 没安装好JDK或JRE环境时运行的报错信息*
@@ -1716,7 +1716,7 @@ Java程序打包成的EXE在CTF中出现的次数不多，一个常用的打包�
 
 用IDA Pro直接打开EXE，查看字符串，能够看到很多带java的字符串，如图10-58所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00050_img_in_image_box_152_1058_1076_1242.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00050_img_in_image_box_152_1058_1076_1242.webp){ width="75%" }
 
 
 *图10-58 使用IDA识别java打包的程序*
@@ -1728,7 +1728,7 @@ exe4j打包的程序在运行时，会将Jar写入系统的临时目录中，所
 
 运行exe4j打包后的程序trustme.exe，让程序停留在等待输入阶段，进程不退出，如图10-59所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00051_img_in_image_box_449_437_776_524.webp){ width="26%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00051_img_in_image_box_449_437_776_524.webp){ width="26%" }
 
 
 *图10-59 运行trustme程序*
@@ -1736,7 +1736,7 @@ exe4j打包的程序在运行时，会将Jar写入系统的临时目录中，所
 
 通过工具everything搜索trustme.jar，可以直接在系统的临时目录中找到对应的Jar包，如图10-60所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00301_00360_page_00051_img_in_image_box_149_778_1081_960.webp){ width="76%" }
+![图片](/books/ctf-special-training/assets/第10章 Reverse分析_page_00051_img_in_image_box_149_778_1081_960.webp){ width="76%" }
 
 
 *图10-60 在系统临时目录下找到trustme.jar*

@@ -85,7 +85,7 @@ SELECT Id FROM users WHERE user_id='-1'union select 1 --
 
 updatexml的报错原理从本质上来说就是函数的报错，如图2-1所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00043_00056_page_00004_img_in_image_box_151_680_1080_789.webp){ width="75%" }
+
 
 *图2-1 updatexml 报错回显示例*
 
@@ -150,7 +150,7 @@ from information_schema.tables group by x)a)%23
 
 以上的Payload可以在sqli-labs的level1中复现，如图2-2所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00043_00056_page_00007_img_in_image_box_153_143_1080_633.webp){ width="75%" }
+
 
 *图2-2 floor报错回显示例*
 
@@ -160,7 +160,7 @@ from information_schema.tables group by x)a)%23
 
 接下来是exp函数报错，exp()报错的本质原因是溢出报错。我们可以在MySQL中进行如图2-3所示的操作。
 
-![图片](/books/ctf-special-training/assets/chunk_00043_00056_page_00007_img_in_image_box_152_1128_1078_1219.webp){ width="75%" }
+
 
 *图2-3 exp报错回显示例*
 
@@ -426,11 +426,11 @@ SQL注入的题目中一般都有绕过这样的类型，常见的绕过方式�
 
 即过滤如select、or、from等的关键字。有些题目在过滤时没有进行递归过滤，而且刚好将关键字替换为空。这时候，我们可以使用穿插关键字的方法进行绕过操作，如：
 
-![图片](/books/ctf-special-training/assets/chunk_00057_00070_page_00009_img_in_image_box_153_951_1070_1123.webp){ width="74%" }
+
 
 也可以通过大小写转换来进行绕过，如：
 
-![图片](/books/ctf-special-training/assets/chunk_00057_00070_page_00009_img_in_image_box_154_1242_1070_1415.webp){ width="74%" }
+
 
 有时候，过滤函数是通过十六进制进行过滤的。我们可以对关键字的个别字母进行替换，如：
 
@@ -509,17 +509,17 @@ SELECT user, password from users
 where user_id=0elunion select 1,2
 ```
 
-![图片](/books/ctf-special-training/assets/chunk_00057_00070_page_00013_img_in_image_box_151_141_1080_714.webp){ width="75%" }
+
 
 *图2-4 空白字符（换行符）绕过空格过滤的示例*
 
-![图片](/books/ctf-special-training/assets/chunk_00057_00070_page_00013_img_in_image_box_152_804_1080_1340.webp){ width="75%" }
+
 
 *图2-5 使用反引号绕过空格过滤的示例*
 
 结果如图2-6所示，同样可以达到绕过的效果。
 
-![图片](/books/ctf-special-training/assets/chunk_00071_00084_page_00000_img_in_image_box_153_232_1079_454.webp){ width="75%" }
+
 
 *图2-6 使用科学计数法进行绕过*
 
@@ -675,3 +675,7 @@ mindmap
 - MySQL 数学函数文档（floor 报错原理原文出处）：http://dev.mysql.com/doc/refman/5.7/en/mathematical-functions.html#function_rand
 
 *来源：CTF特训营（FlappyPig战队 著，机械工业出版社 2020），OCR 全内容保留整理版。*
+
+
+!!! warning "图片缺失说明"
+    本章有 8 张插图源文件已丢失（早期 exp2 样章的 OCR 分块已删除，无法恢复），未予展示。

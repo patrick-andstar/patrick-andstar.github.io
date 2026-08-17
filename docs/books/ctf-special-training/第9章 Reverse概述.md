@@ -111,7 +111,7 @@ Intel的汇编语言程序语句格式为：
 
 调用惯例是指一系列规则，其规定了在机器层面如何进行函数调用。对于特定的系统来说，它是由应用程序二进制接口（Application Binary Interface，ABI）定义的。x86指令体系中的函数调用如图9-1所示，当发生函数调用时，首先将参数从右向左加入堆栈中，然后通过call指令将函数的返回地址压入堆栈中。最后，在新函数中将之前的ebp保存到堆栈中，同时esp会减去一定的值，留下一部分栈空间给局部变量使用。
 
-![图片](/books/ctf-special-training/assets/chunk_00181_00240_page_00052_img_in_image_box_152_146_1085_1183.webp){ width="76%" }
+![图片](/books/ctf-special-training/assets/第9章 Reverse概述_page_00052_img_in_image_box_152_146_1085_1183.webp){ width="76%" }
 
 *图9-1 x86指令体系中的函数调用示意图*
 
@@ -173,7 +173,7 @@ IDA支持的文件类型非常丰富，除了包括PE格式、ELF格式之外，
 
 通过菜单栏中的File→Open，选择要分析的目标程序，得到如图9-2所示的窗口，可以看出，IDA自动识别出了程序为x86_64的ELF程序，直接点击OK即可。
 
-![图片](/books/ctf-special-training/assets/chunk_00181_00240_page_00057_img_in_image_box_153_142_1077_1122.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第9章 Reverse概述_page_00057_img_in_image_box_153_142_1077_1122.webp){ width="75%" }
 
 *图9-2 IDA打开文件*
 
@@ -181,7 +181,7 @@ IDA支持的文件类型非常丰富，除了包括PE格式、ELF格式之外，
 
 IDA的主窗口如图9-3所示，主要包括以下几个区域。
 
-![图片](/books/ctf-special-training/assets/chunk_00181_00240_page_00058_img_in_image_box_153_144_1079_1144.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第9章 Reverse概述_page_00058_img_in_image_box_153_144_1079_1144.webp){ width="75%" }
 
 *图9-3 IDA主窗口*
 
@@ -219,13 +219,13 @@ IDA为每一个数据显示窗口都提供了标签，通过菜单中的View/Ope
 
 如图9-4所示，地址0x4010D9和0x4010DB汇编指令跳转的目标地址为0x4010DF，程序运行到0x4010D9时，必然会跳转到0x4010DF，而不会运行到0x4010DD，所以需要在0x4010DD处使用快捷键D将其转化为数据。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00001_img_in_image_box_194_408_1026_604.webp){ width="67%" }
+![图片](/books/ctf-special-training/assets/第9章 Reverse概述_page_00001_img_in_image_box_194_408_1026_604.webp){ width="67%" }
 
 *图9-4 IDA错误的反汇编代码*
 
 然后，在地址0x4010DF处使用快捷键C将其转化为代码，得到如图9-5所示的结果。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00001_img_in_image_box_191_860_1030_1140.webp){ width="68%" }
+![图片](/books/ctf-special-training/assets/第9章 Reverse概述_page_00001_img_in_image_box_191_860_1030_1140.webp){ width="68%" }
 
 *图9-5 IDA修正后的反汇编代码*
 
@@ -243,7 +243,7 @@ IDA为每一个数据显示窗口都提供了标签，通过菜单中的View/Ope
 
 对于一些针对不常用处理器架构编写的程序，可以开启汇编的自动注释功能。开启的方式为勾选界面中的Auto comments，如图9-6所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00003_img_in_image_box_158_141_1082_770.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第9章 Reverse概述_page_00003_img_in_image_box_158_141_1082_770.webp){ width="75%" }
 
 *图9-6 IDA开启自动注释功能界面*
 
@@ -253,7 +253,7 @@ IDA为每一个数据显示窗口都提供了标签，通过菜单中的View/Ope
 
 修改的方法如图9-7所示，依次选择菜单栏中的Edit→Patch program→Change byte功能进行修改。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00004_img_in_image_box_265_144_959_375.webp){ width="56%" }
+![图片](/books/ctf-special-training/assets/第9章 Reverse概述_page_00004_img_in_image_box_265_144_959_375.webp){ width="56%" }
 
 *图9-7 IDA对程序进行patch*
 
@@ -292,7 +292,7 @@ Ollydbg（简称OD）是Windows下的一款具有可视化界面的用户态调�
 
 OD主界面如图9-8所示，各部分介绍如下。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00007_img_in_image_box_154_144_1080_1091.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第9章 Reverse概述_page_00007_img_in_image_box_154_144_1080_1091.webp){ width="75%" }
 
 *图9-8 OD主界面*
 
@@ -362,7 +362,7 @@ sudo apt-get install gdb
 
 此外，gdb也有很多插件，如peda、gef、pwndbg等，这里的插件提供了一些额外的命令，便于对程序进行逆向分析。这些插件都可以在Github上找到，根据其安装说明进行安装即可。图9-9为gdb安装了peda插件之后运行的界面，可以通过peda help命令查看新增的命令。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00012_img_in_image_box_153_409_1080_861.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第9章 Reverse概述_page_00012_img_in_image_box_153_409_1080_861.webp){ width="75%" }
 
 *图9-9 gdb安装peda插件后的界面*
 
@@ -448,7 +448,7 @@ Qira的官方主页为http://qira.me/，由著名的黑客geohot开发。安装�
 
 浏览器Web界面主要包括以下几个部分。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00017_img_in_image_box_153_148_1082_1431.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第9章 Reverse概述_page_00017_img_in_image_box_153_148_1082_1431.webp){ width="75%" }
 
 *图9-10 Qira的浏览器Web页面*
 

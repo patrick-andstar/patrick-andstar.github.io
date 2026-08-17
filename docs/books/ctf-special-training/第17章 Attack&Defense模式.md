@@ -35,13 +35,13 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 
 如图17-1所示，此时“read(0, &buf, 100);”处存在明显的栈溢出，我们可以通过修改read的大小来修补栈溢出漏洞。从代码中我们可以看出，当读入的数据大于0x14时，可能会覆盖ebp，所以我们将read大小修改为小于0x14即可。IDA Patch功能的选项如图17-2所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00040_img_in_image_box_162_152_1074_1420.webp){ width="74%" }
+![图片](/books/ctf-special-training/assets/第17章 Attack&Defense模式_page_00040_img_in_image_box_162_152_1074_1420.webp){ width="74%" }
 
 *图17-2 IDA Patch功能的选项*
 
 依次选择Edit→Plugins→Keypatch Patcher，如图17-3所示，将0x64修改为0x10。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00041_img_in_image_box_170_400_1066_1357.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第17章 Attack&Defense模式_page_00041_img_in_image_box_170_400_1066_1357.webp){ width="73%" }
 
 *图17-3 Patcher参数设置*
 
@@ -91,13 +91,13 @@ int play()
 
 2）获取puts的plt地址，该地址为0x80483B0，如图17-5所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00045_img_in_image_box_159_391_1069_689.webp){ width="74%" }
+![图片](/books/ctf-special-training/assets/第17章 Attack&Defense模式_page_00045_img_in_image_box_159_391_1069_689.webp){ width="74%" }
 
 *图17-5 puts的plt地址*
 
 3）确定被修改指令的下一指令地址为0x8048540，如图17-6所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00046_img_in_image_box_161_157_1066_959.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第17章 Attack&Defense模式_page_00046_img_in_image_box_161_157_1066_959.webp){ width="73%" }
 
 *图17-6 修改位置的反汇编代码*
 
@@ -109,7 +109,7 @@ int play()
 
 5）修改并保存：E860 FE FF->E870 FE FF，如图17-7所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00047_img_in_image_box_171_161_1064_588.webp){ width="72%" }
+![图片](/books/ctf-special-training/assets/第17章 Attack&Defense模式_page_00047_img_in_image_box_171_161_1064_588.webp){ width="72%" }
 
 *图17-7 Patch Byte的设置*
 
@@ -178,7 +178,7 @@ if ( dword_6041A0 )
 
 如图17-9所示，第14行可能存在uaf风险，需要将释放后的指针置为0，可在.eh_frame段中将指针设为0，此时free的对象为[rdx+rax]，并将该对象赋给rdi。在执行Patch的时候，仍需要保证不影响free的对象。因此在.eh_frame中编写的代码如图17-10所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00050_img_in_image_box_167_425_1070_815.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第17章 Attack&Defense模式_page_00050_img_in_image_box_167_425_1070_815.webp){ width="73%" }
 
 *图17-10 Patch的主要代码*
 

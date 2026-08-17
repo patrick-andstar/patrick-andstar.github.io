@@ -25,7 +25,7 @@
 
 如果将物联网比作人体，那么传感器就相当于是人的眼睛、鼻子、皮肤等感官，接收到信息后要进行分类处理，而承担数据处理工作的就是嵌入式系统。这个例子很形象地描述了传感器、嵌入式系统在物联网中的位置与作用。图26-1展示了物联网各大技术之间的关系。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00012_img_in_image_box_167_509_1065_1221.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第26章 IoT基础知识_page_00012_img_in_image_box_167_509_1065_1221.webp){ width="73%" }
 
 
 *图26-1 IoT领域各大技术之间的关系*

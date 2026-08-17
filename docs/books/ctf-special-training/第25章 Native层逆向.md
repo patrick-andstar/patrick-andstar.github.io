@@ -485,7 +485,7 @@ JNI_OnLoad函数和init_array段，重点关注一个函数——(*env)->Registe
 
 打开一个so文件的第一步，就是查看其导出表，即Exports选项卡，查看是否有我们感兴趣的函数。根据25.1节的内容，我们感兴趣的函数有两类，一类是标准的Native方法命名的函数，另一类是JNI_OnLoad函数，如图25-1所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00025_img_in_image_box_154_143_1080_731.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00025_img_in_image_box_154_143_1080_731.webp){ width="75%" }
 
 
 *图25-1 IDA Pro查看导出表*
@@ -493,7 +493,7 @@ JNI_OnLoad函数和init_array段，重点关注一个函数——(*env)->Registe
 
 在这个so文件中没有找到标准的Native方法命名的函数，但是找到了JNI_OnLoad函数，双击该函数，如图25-2所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00026_img_in_image_box_151_135_1077_667.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00026_img_in_image_box_151_135_1077_667.webp){ width="75%" }
 
 
 *图25-2 IDA Pro查看JNI_OnLoad函数*
@@ -501,7 +501,7 @@ JNI_OnLoad函数和init_array段，重点关注一个函数——(*env)->Registe
 
 在没有加入混淆的情况下，直接按F5键，就可以反编译成C语言的形式（若不能反编译，请考虑一下是否定义了函数，在汇编语言的第一句按p定义函数），效果如图25-3所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00027_img_in_image_box_271_131_935_589.webp){ width="54%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00027_img_in_image_box_271_131_935_589.webp){ width="54%" }
 
 
 *图25-3 IDA Pro查看反编译的C代码*
@@ -511,7 +511,7 @@ JNI_OnLoad函数和init_array段，重点关注一个函数——(*env)->Registe
 
 首先，我们将光标移动到函数名 “JNI_OnLoad” 上，然后右键选择 “Set item type” 或者直接按y快捷键，弹出修改函数名称及参数的选项，将函数定义改成标准形式（这里还是保留“__fastcall”参数），如图25-4所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00028_img_in_image_box_192_180_1036_429.webp){ width="68%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00028_img_in_image_box_192_180_1036_429.webp){ width="68%" }
 
 
 *图25-4 IDA Pro修改参数类型*
@@ -519,7 +519,7 @@ JNI_OnLoad函数和init_array段，重点关注一个函数——(*env)->Registe
 
 然后点击OK，函数的参数就被修改了，同时，代码中原先的各种调用也成功显示出来了，如图25-5所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00028_img_in_image_box_258_749_960_1199.webp){ width="57%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00028_img_in_image_box_258_749_960_1199.webp){ width="57%" }
 
 
 *图25-5 IDA Pro查看反编译效果*
@@ -555,7 +555,7 @@ JNI_OnLoad函数和init_array段，重点关注一个函数——(*env)->Registe
 
 我们可以从这里看到init_array，双击进入该字段，如图25-7所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00030_img_in_image_box_273_375_964_524.webp){ width="56%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00030_img_in_image_box_273_375_964_524.webp){ width="56%" }
 
 
 *图25-7 IDA Pro查看init_array*
@@ -563,7 +563,7 @@ JNI_OnLoad函数和init_array段，重点关注一个函数——(*env)->Registe
 
 双击进入sub_14C0，可以看到隐藏的代码，如图25-8所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00030_img_in_image_box_167_711_1050_1116.webp){ width="72%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00030_img_in_image_box_167_711_1050_1116.webp){ width="72%" }
 
 
 *图25-8 IDA Pro查看init_array代码*
@@ -571,7 +571,7 @@ JNI_OnLoad函数和init_array段，重点关注一个函数——(*env)->Registe
 
 那么，空的init_array段是什么样呢，如图25-9所示，全部为0。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00031_img_in_image_box_159_137_1045_317.webp){ width="72%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00031_img_in_image_box_159_137_1045_317.webp){ width="72%" }
 
 
 *图25-9 IDA Pro查看空的init_array*
@@ -618,7 +618,7 @@ $ adb forward tcp:23946 tcp:23946
 
 Debugger→Attach→Remote ARMLinux/Android debugger，并填写目标调试客户端的IP和端口，如图25-10所示，这里我们选择连接到本机的23946端口。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00035_img_in_image_box_225_186_1008_655.webp){ width="63%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00035_img_in_image_box_225_186_1008_655.webp){ width="63%" }
 
 
 *图25-10 IDA Pro动态调试*
@@ -626,7 +626,7 @@ Debugger→Attach→Remote ARMLinux/Android debugger，并填写目标调试客�
 
 点击 “OK”， IDA Pro会弹出一个供你选择调试进程的窗口，如图25-11所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00036_img_in_image_box_229_185_1004_1118.webp){ width="63%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00036_img_in_image_box_229_185_1004_1118.webp){ width="63%" }
 
 
 *图25-11 IDA Pro选择附加进程*
@@ -640,7 +640,7 @@ Debugger→Attach→Remote ARMLinux/Android debugger，并填写目标调试客�
 
 25.3.2节将介绍笔者最常用的动态调试工具——GDB。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00038_img_in_image_box_194_182_1040_1348.webp){ width="69%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00038_img_in_image_box_194_182_1040_1348.webp){ width="69%" }
 
 *图25-12 IDA Pro动态调试*
 
@@ -915,7 +915,7 @@ return result;
 
 使用clang编译器或者未加混淆参数的OLLVM编译器编译出来的汇编代码，其用IDA Pro查看的流程图（去掉了栈溢出检测等无关代码）如图25-13所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00055_img_in_image_box_158_164_1031_1125.webp){ width="71%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00055_img_in_image_box_158_164_1031_1125.webp){ width="71%" }
 
 
 *图25-13 IDA Pro查看反编译流图*
@@ -935,7 +935,7 @@ return result;
 
 代码中所有的基础块都可以分为两类，一类是存储在为寄存器LR赋值的语句块中，另一类是存储在没有为寄存器LR赋值的块中；随后我们可以根据对寄存器LR赋值和判断的情况，将为LR赋值的块按照先后顺序排列，同时丢弃掉没有为LR赋值的块，形成一个有向图，最后将图中没有意义的块全部去除，即可还原出混淆前的代码了。
 
-![图片](/books/ctf-special-training/assets/chunk_00961_01020_page_00058_img_in_image_box_163_124_1065_1429.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00058_img_in_image_box_163_124_1065_1429.webp){ width="73%" }
 
 *图25-14 IDA Pro查看混淆后的流图1*
 
@@ -943,7 +943,7 @@ return result;
 
 -bcf的全称是“Bogus Control Flow”，这里直译为“虚假控制流”。这个混淆方法的主要思想是将所有基础块的代码再复制一遍，再添加一个永远为真的虚假分支，使得你在查看代码的时候能够发现有的流程重复出现了两次，例如，之前的代码使用“bcf混淆”后的效果如图25-15所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00001_img_in_image_box_154_133_1056_1419.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00001_img_in_image_box_154_133_1056_1419.webp){ width="73%" }
 
 *图25-15 IDA Pro查看混淆后的流图2*
 
@@ -952,7 +952,7 @@ return result;
 
 因此对于bcf混淆，我们可以从源码中找出些许解决方法。源码中有一段注释如下：
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00002_img_in_image_box_161_596_990_1435.webp){ width="67%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00002_img_in_image_box_161_596_990_1435.webp){ width="67%" }
 
 
 ```c
@@ -977,7 +977,7 @@ predicates)
 
 由图25-16中可以看到，程序的主要流程并没有发生变化，只是代码变得略微复杂一些。OLLVM对于代码替换的支持可以查看官方的相关说明https://github.com/obfuscator-llvm/obfuscator/wiki/Instructions-Substitution，处理起来比之前两个混淆简单很多。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00005_img_in_image_box_152_142_1059_1416.webp){ width="74%" }
+![图片](/books/ctf-special-training/assets/第25章 Native层逆向_page_00005_img_in_image_box_152_142_1059_1416.webp){ width="74%" }
 
 *图25-16 IDA Pro查看混淆后的流图3*
 

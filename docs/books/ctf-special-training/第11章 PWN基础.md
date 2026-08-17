@@ -77,12 +77,12 @@ gdb：是一个功能强大的程序调试工具，是动态调试的必备利�
 
 Linux x86下获取shell的shellcode，如图11-1所示。Linux x64下获取shell的shellcode，如图11-2所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00000_img_in_image_box_245_916_978_1258.webp){ width="59%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00000_img_in_image_box_245_916_978_1258.webp){ width="59%" }
 
 
 *图11-1 Linux x86 shellcode示例*
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00001_img_in_image_box_296_140_928_472.webp){ width="51%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00001_img_in_image_box_296_140_928_472.webp){ width="51%" }
 
 
 *图11-2 Linux x64 shellcode示例*
@@ -90,7 +90,7 @@ Linux x86下获取shell的shellcode，如图11-1所示。Linux x64下获取shell
 
 shellcode的获取途径有很多，可以直接调用pwntools里面的shellcraft模块来生成，如图11-3所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00001_img_in_image_box_150_731_1081_873.webp){ width="76%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00001_img_in_image_box_150_731_1081_873.webp){ width="76%" }
 
 
 *图11-3 shellcode生成方法*
@@ -104,7 +104,7 @@ shellcode的获取途径有很多，可以直接调用pwntools里面的shellcraf
 
 最初的rop示意如图11-4所示（x86）。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00002_img_in_image_box_195_557_1054_1178.webp){ width="70%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00002_img_in_image_box_195_557_1054_1178.webp){ width="70%" }
 
 
 *图11-4 原始rop示意图*
@@ -120,12 +120,12 @@ Linux x64下rop构造示意图如图11-5所示。
 
 Linux x86下rop构造示意图如图11-6所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00003_img_in_image_box_214_643_1034_1306.webp){ width="66%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00003_img_in_image_box_214_643_1034_1306.webp){ width="66%" }
 
 
 *图11-5 x64架构rop示意图*
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00004_img_in_image_box_204_171_1049_826.webp){ width="69%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00004_img_in_image_box_204_171_1049_826.webp){ width="69%" }
 
 
 *图11-6 x86架构rop示意图*
@@ -161,7 +161,7 @@ if (!v7)
 *图11-7 system调用反编译代码*
 
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00005_img_in_image_box_151_1044_1008_1347.webp){ width="70%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00005_img_in_image_box_151_1044_1008_1347.webp){ width="70%" }
 
 
 *图11-8 system调用反汇编代码*
@@ -180,7 +180,7 @@ if (!v7)
 
 __dl_runtime_resolve函数定义在glibc源码的sysdeps/i386/dl-trampoline.S中，其中调用了__dl_fixup；__dl_fixup函数定义在__elf/dl-runtime.c中，其代码中使用了各种宏，因此可读性较差，如图11-9所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00007_img_in_image_box_201_138_918_499.webp){ width="58%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00007_img_in_image_box_201_138_918_499.webp){ width="58%" }
 
 
 *图11-9 dll_fixup函数定义*
@@ -188,7 +188,7 @@ __dl_runtime_resolve函数定义在glibc源码的sysdeps/i386/dl-trampoline.S中
 
 该利用方法需要用到elf结构的动态节信息，如SYMTAB、STRTAB、JMPREL、VERSYM，可通过readelf - d./proc命令查看这几个信息，如图11-10所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00008_img_in_image_box_180_139_1042_846.webp){ width="70%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00008_img_in_image_box_180_139_1042_846.webp){ width="70%" }
 
 
 *图11-10 elf文件动态节信息*
@@ -324,7 +324,7 @@ payload += rop.dl_resolve_data(target_addr + 0x30, 'system')
 
 程序数据一般映射在内存的较低地址处，然后依次为堆块数据、库数据及栈等，其中还映射了一部分起保护作用的不可访问区域，布局图如图11-11所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00014_img_in_image_box_195_181_1025_824.webp){ width="67%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00014_img_in_image_box_195_181_1025_824.webp){ width="67%" }
 
 
 *图11-11 程序内存布局*
@@ -352,13 +352,13 @@ x86程序的内存布局实例如图11-12所示。
 
 x64程序的内存布局实例如图11-13所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00016_img_in_image_box_153_144_1081_576.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00016_img_in_image_box_153_144_1081_576.webp){ width="75%" }
 
 
 *图11-12 x86程序内存布局*
 
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00016_img_in_image_box_152_671_1080_1208.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00016_img_in_image_box_152_671_1080_1208.webp){ width="75%" }
 
 
 *图11-13 x64程序内存布局*
@@ -503,7 +503,7 @@ pwn(io)
 
 将相关伪造信息写入到bss段的shellcode中，如图11-16所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00021_img_in_image_box_151_616_1079_799.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00021_img_in_image_box_151_616_1079_799.webp){ width="75%" }
 
 
 *图11-16 利用rop布局内存数据*
@@ -511,7 +511,7 @@ pwn(io)
 
 然后调用plt0的shellcode，如图11-17所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00021_img_in_image_box_178_998_1044_1099.webp){ width="70%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00021_img_in_image_box_178_998_1044_1099.webp){ width="70%" }
 
 
 *图11-17 触发shellcode的关键代码*
@@ -684,7 +684,7 @@ mov eax, 0x3b; execvl的系统调用号.....
 
 爆破的shellcode只覆盖read函数的最低位，然后调用read（相当于调用write），打印相关的头部信息，如图11-19所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00026_img_in_image_box_151_674_1079_976.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00026_img_in_image_box_151_674_1079_976.webp){ width="75%" }
 
 
 *图11-19 rop利用代码*
@@ -810,7 +810,7 @@ pwn(io, dis)
 
 使用dl_resolve进行求解。使用dl_resolve方法来求解的时候，相对来说就较为简单，通过漏洞的多次利用，将需要的伪造信息填入到内存中去，如图11-21所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00030_img_in_image_box_156_144_1080_402.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00030_img_in_image_box_156_144_1080_402.webp){ width="75%" }
 
 
 *图11-21 布局dl_resolve的结构*
@@ -818,7 +818,7 @@ pwn(io, dis)
 
 计算出各自的偏移，然后通过一个rop直接调用plt0进行解析即可，如图11-22所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00030_img_in_image_box_259_658_962_798.webp){ width="57%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00030_img_in_image_box_259_658_962_798.webp){ width="57%" }
 
 
 *图11-22 通过rop触发dl_resolve*
@@ -957,7 +957,7 @@ gou_wu_che_struct ends
 
 由于程序是堆溢出，而且大小是 $ 40+8 $（presize+size）=48字节，因此可以利用fastbin的结构进行堆块的利用。泄露信息的部分较为简单，因为结构体中自带了next指针，这个地方是可以覆盖的，所以直接覆盖后，在打印信息的时候就可以直接泄露相关的got表信息。打印部分（泄露信息）如图11-25所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00034_img_in_image_box_282_132_893_485.webp){ width="49%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00034_img_in_image_box_282_132_893_485.webp){ width="49%" }
 
 
 *图11-25 泄露信息的漏洞点*
@@ -965,7 +965,7 @@ gou_wu_che_struct ends
 
 地址写的逻辑主要是通过fastbin来修改head指针，在head_ptr_804B1C0处伪造一个假的堆块fake_chunk，修改next指针指向该fake_chunk，然后通过free成功释放掉该fake_chunk。再次申请时，该fake_chunk将被分配，并且刚好能实现4字节任意地址写任意数据（将atoi_got改写为system）。因为这里将atoi修改成system，所以下次输入编号的时候，直接输入“/bin/sh”即可，如图11-26所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00361_00420_page_00034_img_in_image_box_236_1035_951_1320.webp){ width="58%" }
+![图片](/books/ctf-special-training/assets/第11章 PWN基础_page_00034_img_in_image_box_236_1035_951_1320.webp){ width="58%" }
 
 
 *图11-26 任意写的漏洞点*

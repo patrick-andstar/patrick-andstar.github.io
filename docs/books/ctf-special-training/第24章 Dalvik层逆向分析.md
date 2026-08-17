@@ -351,7 +351,7 @@ jd-gui是开源软件，读者可以从GitHub上
 
 运行界面如图24-1所示，直接将Jar文件拖入，即可反编译查看Java代码。
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00042_img_in_image_box_203_186_1029_1167.webp){ width="67%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00042_img_in_image_box_203_186_1029_1167.webp){ width="67%" }
 
 
 *图24-1 JD-GUI布局*
@@ -388,7 +388,7 @@ Android Killer集合了之前讲过的Apktool、dex2jar、jd-gui、signapk、adb
 
 如图24-2所示的是Android Killer工作的主界面，蓝色的主界面看起来非常的清爽，每个功能键都有标注，非常容易上手。
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00047_img_in_image_box_154_136_1080_1273.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00047_img_in_image_box_154_136_1080_1273.webp){ width="75%" }
 
 
 *图24-2 Android Killer布局*
@@ -403,12 +403,12 @@ Android Killer的重打包功能也非常方便。只需点击“编译”按钮
 
 Android Killer还设有“插入代码管理器”，可以将自己经常用到的插桩代码保存起来，使用时只需点开复制粘贴即可，不用再到处去找自己保存到哪里了，如图24-7所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00049_img_in_image_box_157_139_1080_1274.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00049_img_in_image_box_157_139_1080_1274.webp){ width="75%" }
 
 
 *图24-3 Android Killer反编译*
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00050_img_in_image_box_154_142_1080_825.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00050_img_in_image_box_154_142_1080_825.webp){ width="75%" }
 
 
 *图24-4 Android Killer小工具*
@@ -416,22 +416,22 @@ Android Killer还设有“插入代码管理器”，可以将自己经常用到
 
 最后，需要注意的一点是，Android Killer毕竟还是基于Apktool等工具来实现的，目前Android Killer已经好久没有升级了，但是Apktool等工具依旧在更新，如果我们重打包失败，可以考虑失败是否由于Apktool版本过低导致。在Android Killer中升级Apktool很简单，点击“APKTOOL管理器”按钮打开APKTOOL管理器，点击下方的“下载最新的Apktool”，根据网页的提示即可将Apktool升级至最新版本，如图24-8所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00051_img_in_image_box_155_142_1080_1272.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00051_img_in_image_box_155_142_1080_1272.webp){ width="75%" }
 
 
 *图24-5 Android Killer反编译*
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00052_img_in_image_box_155_141_1080_1271.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00052_img_in_image_box_155_141_1080_1271.webp){ width="75%" }
 
 
 *图24-6 Android Killer查看字符串*
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00053_img_in_image_box_154_144_1080_1079.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00053_img_in_image_box_154_144_1080_1079.webp){ width="75%" }
 
 
 *图24-7 Android Killer代码管理器*
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00054_img_in_image_box_155_144_1081_895.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00054_img_in_image_box_155_144_1081_895.webp){ width="75%" }
 
 
 *图24-8 Android Killer更新Apktool*
@@ -527,7 +527,7 @@ make
 
 使用 “打开” 操作或者将APK文件直接拖入APK Studio中，APK Studio就会自动调用Apktool进行反编译，如图24-10所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00059_img_in_image_box_192_337_1035_1265.webp){ width="68%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00059_img_in_image_box_192_337_1035_1265.webp){ width="68%" }
 
 *图24-10 APK Studio界面*
 
@@ -540,7 +540,7 @@ keytool -genkey -alias demo.keystore -keyalg RSA -validity 40000 -keystore demo.
 
 点击钥匙按钮，输入keystore路径以及keystore密码、key的别名、key的密码，即可进行签名操作，如图24-11所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00000_img_in_image_box_337_839_884_1153.webp){ width="44%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00000_img_in_image_box_337_839_884_1153.webp){ width="44%" }
 
 
 *图24-11 APK Studio 签名*
@@ -565,7 +565,7 @@ JEB最出色同时也是最吸引笔者的一项功能就是其交叉引用功�
 
 JEB的结构如图24-12所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00004_img_in_image_box_170_171_1064_1175.webp){ width="73%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00004_img_in_image_box_170_171_1064_1175.webp){ width="73%" }
 
 
 *图24-12 JEB*
@@ -573,7 +573,7 @@ JEB的结构如图24-12所示。
 
 启动完毕的界面如图24-13所示，可以看到在没有打开APK的情况下，已经有很多标签页显示出来了。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00005_img_in_image_box_150_140_1080_1191.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00005_img_in_image_box_150_140_1080_1191.webp){ width="75%" }
 
 
 *图24-13 JEB布局*
@@ -585,12 +585,12 @@ JEB的结构如图24-12所示。
 
 选中相应的类，按下 “TAB” 按钮，JEB会切换到 “反编译的 Java” 一栏中，将反编译后的 Java 代码显示出来，如图24-15所示。在 “反编译的 Java” 一栏中直接双击目标类，也会将反编译后的 Java 代码直接显示出来。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00007_img_in_image_box_152_139_1079_1191.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00007_img_in_image_box_152_139_1079_1191.webp){ width="75%" }
 
 
 *图24-14 JEB反编译Smali*
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00008_img_in_image_box_152_143_1079_1190.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00008_img_in_image_box_152_143_1079_1190.webp){ width="75%" }
 
 
 *图24-15 JEB反编译Java*
@@ -610,7 +610,7 @@ coord: (0,29,23) | addr: Loom/a/easyjava/b:->a(V | loc: ? Available decompilers:
 
 交叉引用功能可用于查看该方法在其他哪个地方被使用，如图24-17所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00012_img_in_image_box_154_146_1078_1419.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00012_img_in_image_box_154_146_1078_1419.webp){ width="75%" }
 
 *图24-17 JEB交叉引用*
 
@@ -634,12 +634,12 @@ coord: (0,29,23) | addr: Loom/a/easyjava/b:->a(V | loc: ? Available decompilers:
 
 以上就是对使用JEB进行静态分析的基本介绍了，关于使用JEB2进行动态调试的相关内容，将在24.3节中详细介绍。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00016_img_in_image_box_152_139_1079_1192.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00016_img_in_image_box_152_139_1079_1192.webp){ width="75%" }
 
 
 *图24-19 JEB查看Manifest.xml*
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00017_img_in_image_box_153_143_1079_1189.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00017_img_in_image_box_153_143_1079_1189.webp){ width="75%" }
 
 
 *图24-20 JEB查看资源文件*
@@ -652,7 +652,7 @@ coord: (0,29,23) | addr: Loom/a/easyjava/b:->a(V | loc: ? Available decompilers:
 
 逆向工具IDA Pro也是支持对DEX文件的静态分析的，只要将APK文件拖入IDA Pro中，在弹出的窗口中选择class.dex，IDA Pro就会自动识别出DEX的文件格式，并且对其进行反编译，如图24-21所示。更多关于IDA Pro的内容可参阅网上相关信息。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00019_img_in_image_box_194_196_1038_1295.webp){ width="68%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00019_img_in_image_box_194_196_1038_1295.webp){ width="68%" }
 
 *图24-21 IDA Pro反编译Dex*
 
@@ -762,7 +762,7 @@ JEB2相比JEB1的进步之处就是它增加了APK的动态调试功能，而且
 <div style="text-align: center;">⚫️ ⚫️ ⚪️</div>
 
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00029_img_in_image_box_193_212_1032_1248.webp){ width="68%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00029_img_in_image_box_193_212_1032_1248.webp){ width="68%" }
 
 
 coord: (8601,26,32) | addr: Lcom/a/sample/t.../onClick(Android/View/View/V+80h | loc: T
@@ -774,7 +774,7 @@ coord: (8601,26,32) | addr: Lcom/a/sample/t.../onClick(Android/View/View/V+80h |
 
 开始调试的方法非常简单，首先在手机上运行APK；然后点击JEB2上方的调试按钮，在弹出的对话框中选择目标手机以及要调试的App的名字，点击Attach，即可进入调试模式。需要注意的是，目标App的Flags一栏中需要有D属性，如果没有，则是系统的ro.debuggable属性没有设置好，需要重新设置，如图24-24所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00031_img_in_image_box_169_139_1053_803.webp){ width="72%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00031_img_in_image_box_169_139_1053_803.webp){ width="72%" }
 
 
 *图24-24 JEB选择目标进程*
@@ -782,7 +782,7 @@ coord: (8601,26,32) | addr: Lcom/a/sample/t.../onClick(Android/View/View/V+80h |
 
 图24-25中的按钮从左至右分别为调试、运行、暂停、停止、单步进入、单步执行、跳出函数、运行到指针处，都是极为常见的调试按钮。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00031_img_in_image_box_474_1128_746_1165.webp){ width="22%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00031_img_in_image_box_474_1128_746_1165.webp){ width="22%" }
 
 
 *图24-25 JEB动态调试按钮*
@@ -794,7 +794,7 @@ Locals栏用于显示局部变量，Breakpoints栏用于显示断点信息，Thr
 
 在BakSmali代码栏中，选择某一行，使用Control+B（macOS系统中是Command+B）快捷键下断点，下了断点的语句会在它的左边显示断点标志。下完想要的断点之后，点击运行按钮，然后触发目标事件，就能将断点下在目标代码处了，这个时候的调试与一般的调试方法一样，如图24-27所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00033_img_in_image_box_156_147_486_746.webp){ width="26%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00033_img_in_image_box_156_147_486_746.webp){ width="26%" }
 
 
 
@@ -838,7 +838,7 @@ b) JEB 动态调试窗口 (2)
 *图 24-26*
 
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00034_img_in_image_box_217_216_1007_898.webp){ width="64%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00034_img_in_image_box_217_216_1007_898.webp){ width="64%" }
 
 
 *图24-27 JEB动态调试界面*
@@ -860,7 +860,7 @@ Xposed框架从本质上讲采用的是Hook技术，该框架通过在/system/bi
 
 第一种方法比较简单，但是该方法需要具有ROOT权限，并且需要机型与系统版本的支持，该方法多见于5.0以下（不包括5.0）的系统中。打开之前安装的“XposedInstaller”，点击“框架”，会依次出现如图24-28所示的界面，直接点击其中的“安装/更新”即可，图24-28中笔者已经用该方法成功修改了app_process程序。若是“安装/更新”按钮为灰色，则说明你的手机不支持使用该方法进行安装，需要选择第二种方法。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00037_img_in_image_box_166_210_208_275.webp){ width="3%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00037_img_in_image_box_166_210_208_275.webp){ width="3%" }
 
 
 ## 10 :22
@@ -920,7 +920,7 @@ reboot recovery” 命令，或者在关机状态下按住音量上键和电源�
 
 ## 9 :48
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00040_img_in_image_box_156_207_213_277.webp){ width="4%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00040_img_in_image_box_156_207_213_277.webp){ width="4%" }
 
 
 ## Framework
@@ -949,7 +949,7 @@ Reboot
 
 Xposed framework version 86 is active.
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00040_img_in_image_box_628_205_684_278.webp){ width="4%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00040_img_in_image_box_628_205_684_278.webp){ width="4%" }
 
 
 ## Framework
@@ -1110,17 +1110,17 @@ com.a.sample.xposed.Sample
 
 最后编译并安装APK，编译过程中建议关闭proguard混淆，或者将Hook类添加到proguard混淆例外中。安装完成后打开XposedInstaller，点击“模块”，即可看到刚才编写的Xposed模块了，如图24-30所示。点击右边的小方块打上对勾，然后重启手机，即可应用该模块。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00046_img_in_image_box_244_326_338_411.webp){ width="7%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00046_img_in_image_box_244_326_338_411.webp){ width="7%" }
 
 
 Xposed
 
 Xposed example
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00046_img_in_image_box_926_333_977_373.webp){ width="4%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00046_img_in_image_box_926_333_977_373.webp){ width="4%" }
 
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00046_img_in_image_box_202_447_1024_1429.webp){ width="67%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00046_img_in_image_box_202_447_1024_1429.webp){ width="67%" }
 
 *图24-30 Xposed启动模块*
 
@@ -1137,7 +1137,7 @@ Frida是开源软件，网站位于http://www.frida.re/，源码托管于GitHub�
 
 下面就来介绍在Android系统中使用Frida框架来进行Hook操作的基本方法。Frida的原理如图24-31所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00049_img_in_image_box_152_133_1082_1051.webp){ width="75%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00049_img_in_image_box_152_133_1082_1051.webp){ width="75%" }
 
 
 *图24-31 Frida原理*
@@ -1341,7 +1341,7 @@ Frida框架对于Dalvik层的Hook就介绍到这里。相对Xposed框架来说�
 
 ProGuard混淆是Android SDK默认的，自带的混淆器，其主要功能是对类名、方法名、变量名等标识符进行混淆，将它们修改为无意义的字母组合，如图24-32所示，我们在APK中经常看见的a、b、c类并不是出题者故意设计的，而是由ProGuard混淆器混淆之后的结果。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00059_img_in_image_box_472_597_749_820.webp){ width="22%" }
+![图片](/books/ctf-special-training/assets/第24章 Dalvik层逆向分析_page_00059_img_in_image_box_472_597_749_820.webp){ width="22%" }
 
 
 *图24-32 ProGuard混淆之后的类*
