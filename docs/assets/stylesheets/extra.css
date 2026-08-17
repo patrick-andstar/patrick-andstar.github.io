@@ -1,8 +1,6 @@
 /* 图片显示规则：版心内居中、不超容器；点击放大由 glightbox 插件负责 */
 .md-typeset img {
   max-width: 100%;
-}
-.md-typeset div[style*="text-align"] img {
   display: block;
   margin-left: auto;
   margin-right: auto;

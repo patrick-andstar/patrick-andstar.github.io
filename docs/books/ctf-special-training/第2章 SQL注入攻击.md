@@ -1,22 +1,6 @@
----
-类型: 学习笔记
-领域: CTF/Web
-主题: "SQL注入攻击"
-版本: v1
-来源笔记: [00-目录](00-目录.md)
-来源页码: "第2章"
-创建日期: 2026-08-16
-复习状态: 未复习
-优先级: 核心
-tags:
-  - CTF
-  - CTF/Web
-  - SQL注入
----
 
-> [!abstract] 本章摘要
-> 本章系统讲解基于 MySQL 的 SQL 注入：注入成因与分类、可回显的联合查询注入、报错注入（updatexml/floor/exp）、Bool 盲注与时间盲注、二次注入、limit 之后的注入、注入点位置与发现方法、四大类绕过（关键字/空格/单引号/相等过滤），最后介绍 SQL 读写文件实现 getshell。
-
+???+ abstract "本章摘要"
+    本章系统讲解基于 MySQL 的 SQL 注入：注入成因与分类、可回显的联合查询注入、报错注入（updatexml/floor/exp）、Bool 盲注与时间盲注、二次注入、limit 之后的注入、注入点位置与发现方法、四大类绕过（关键字/空格/单引号/相等过滤），最后介绍 SQL 读写文件实现 getshell。
 ## 章节导航
 
 上一篇：[第1章 常用工具安装及使用](第1章 常用工具安装及使用.md)
@@ -51,13 +35,11 @@ SQL注入在国内CTF比赛中的地位特别高，基本上是每次比赛的�
 
 SQL注入在CTF比赛中十分常见，涉及各种数据库。一般的CTF比赛中，出题人都会变相地增加一层WAF（比如，对关键字进行过滤等），然后只留下一个思路的解题路径，这时候我们需要快速找到并绕过这个点，然后得到flag。
 
-> [!note]+ 定义：SQL注入
-> 开发者把用户输入直接与 SQL 语句拼接，导致待执行的 SQL 语句可控，从而可以执行任意 SQL 语句。
-
-> [!tip]- 本节要点
-> 1. 分类：可回显（联合查询/报错/DNS 外带）与不可回显（Bool 盲注/时间盲注），另有业务逻辑型的二次注入；
-> 2. CTF 中的注入题通常会加一层 WAF（关键字过滤等），核心考点是快速找到并绕过过滤点。
-
+???+ note "定义：SQL注入"
+    开发者把用户输入直接与 SQL 语句拼接，导致待执行的 SQL 语句可控，从而可以执行任意 SQL 语句。
+???+ tip "本节要点"
+    1. 分类：可回显（联合查询/报错/DNS 外带）与不可回显（Bool 盲注/时间盲注），另有业务逻辑型的二次注入；
+    2. CTF 中的注入题通常会加一层 WAF（关键字过滤等），核心考点是快速找到并绕过过滤点。
 ## 二、可以联合查询的SQL注入
 
 在可以联合查询的题目中，一般会将数据库查询的数据回显到页面中，比如下面这个例子（测试样例代码时需要关闭GPC）：
@@ -91,11 +73,10 @@ SELECT Id FROM users WHERE user_id='-1'union select 1 --
 
 联合查询是最简单易学，也是最容易理解和上手的注入方法，所以在题目中出现可以使用联合查询进行回显的注入时，一般需要绕过某些特定字符或者是特定单词（比如，空格或者select、and、or等字符串）。
 
-> [!tip]- 本节要点
-> 1. 闭合前单引号 + 注释后单引号 + 中间写 Payload，是联合查询注入的基本套路；
-> 2. URL 中的 `+` 会被服务器转义为空格；
-> 3. 可回显题目通常需要绕过空格或 select/and/or 等关键字。
-
+???+ tip "本节要点"
+    1. 闭合前单引号 + 注释后单引号 + 中间写 Payload，是联合查询注入的基本套路；
+    2. URL 中的 `+` 会被服务器转义为空格；
+    3. 可回显题目通常需要绕过空格或 select/and/or 等关键字。
 ## 三、报错注入
 
 这里主要介绍3种MySQL数据库报错注入的方法，分别是updatexml、floor和exp。
@@ -104,7 +85,7 @@ SELECT Id FROM users WHERE user_id='-1'union select 1 --
 
 updatexml的报错原理从本质上来说就是函数的报错，如图2-1所示。
 
-<div style="text-align: center;"><img src="assets/chunk_00043_00056_page_00004_img_in_image_box_151_680_1080_789.webp" alt="Image" width="75%" /></div>
+![图片](/books/ctf-special-training/assets/chunk_00043_00056_page_00004_img_in_image_box_151_680_1080_789.webp){ width="100%" }
 
 <div style="text-align: center;">图2-1 updatexml 报错回显示例</div>
 
@@ -169,7 +150,7 @@ from information_schema.tables group by x)a)%23
 
 以上的Payload可以在sqli-labs的level1中复现，如图2-2所示。
 
-<div style="text-align: center;"><img src="assets/chunk_00043_00056_page_00007_img_in_image_box_153_143_1080_633.webp" alt="Image" width="75%" /></div>
+![图片](/books/ctf-special-training/assets/chunk_00043_00056_page_00007_img_in_image_box_153_143_1080_633.webp){ width="100%" }
 
 <div style="text-align: center;">图2-2 floor报错回显示例</div>
 
@@ -179,7 +160,7 @@ from information_schema.tables group by x)a)%23
 
 接下来是exp函数报错，exp()报错的本质原因是溢出报错。我们可以在MySQL中进行如图2-3所示的操作。
 
-<div style="text-align: center;"><img src="assets/chunk_00043_00056_page_00007_img_in_image_box_152_1128_1078_1219.webp" alt="Image" width="75%" /></div>
+![图片](/books/ctf-special-training/assets/chunk_00043_00056_page_00007_img_in_image_box_152_1128_1078_1219.webp){ width="100%" }
 
 <div style="text-align: center;">图2-3 exp报错回显示例</div>
 
@@ -189,12 +170,11 @@ from information_schema.tables group by x)a)%23
 ?id=1' and exp(~ (select * from (select user())x))%23
 ```
 
-> [!tip]- 本节要点
-> 1. updatexml：函数自身报错，concat 拼接 0x7e 与目标数据；
-> 2. floor：rand 与 order by/group by 冲突触发报错，同一套模板换 version()/user()/database() 即可爆破不同目标；
-> 3. exp：溢出报错；
-> 4. 表名用十六进制编码可避免引号报错（如 0x656d61696c73 = emails）。
-
+???+ tip "本节要点"
+    1. updatexml：函数自身报错，concat 拼接 0x7e 与目标数据；
+    2. floor：rand 与 order by/group by 冲突触发报错，同一套模板换 version()/user()/database() 即可爆破不同目标；
+    3. exp：溢出报错；
+    4. 表名用十六进制编码可避免引号报错（如 0x656d61696c73 = emails）。
 ## 四、Bool盲注
 
 Bool盲注通常是由于开发者将报错信息屏蔽而导致的，但是网页中真和假有着不同的回显，比如为真时返回access，为假时返回false；或者为真时返回正常页面，为假时跳转到错误页面等。
@@ -213,28 +193,36 @@ Bool盲注的原理是如果题目后端拼接了SQL语句，and 1=1为真时不
 
 <div style="text-align: center;">表2-1 截取函数及其说明</div>
 
-<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>函数名</td><td style='text-align: center; word-wrap: break-word;'>功能及使用方法</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>substr()</td><td style='text-align: center; word-wrap: break-word;'>substr 函数是字符串截取函数，在盲注中我们一般逐位获取数据，这时候就需要使用 substr 函数按位截取。使用方法：substr(str,start,length)。这里的 str 为被截取的字符串，start 为开始截取的位置，length 为截取的长度。在盲注时，我们一般只截取一位，如 substr(user(), 1,1)，这样可以从 user 函数返回数据的第一位开始的偏移位置截取一位，之后我们只要修改位置参数即可获取其他的数据</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>left()</td><td style='text-align: center; word-wrap: break-word;'>left 函数是左截取函数，left 的用法为 left(str,length)。这里的 str 是被截取的字符串，length 为被截取的长度。在盲注中可以使用 left(user(), 1) 来左截取一位字符。但是，如果是 left(user(), 2)，则会将 user() 的前两位都截取出来。这样的话，我们需要在匹配输出的字符串之前增加前缀，把之前几次的结果添加到这次的结果之前。使用样例如下：假设 user() 函数返回的字符串是 "admin"，那么 select a from b where left(a,1) = &#x27;a&#x27; 会返回真，在探测第二位的时候，需要把第一位添加到当前探测位之前，比如：select a from b where left(a,2) = &#x27;ad&#x27;以此类推，直到读取到全部内容为止</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>right()</td><td style='text-align: center; word-wrap: break-word;'>right 函数是右截取函数。使用方法与 left 函数类似，可以参考 left 函数的用法</td></tr></table>
+| 函数名 | 功能及使用方法 |
+| --- | --- |
+| substr() | substr 函数是字符串截取函数，在盲注中我们一般逐位获取数据，这时候就需要使用 substr 函数按位截取。使用方法：substr(str,start,length)。这里的 str 为被截取的字符串，start 为开始截取的位置，length 为截取的长度。在盲注时，我们一般只截取一位，如 substr(user(), 1,1)，这样可以从 user 函数返回数据的第一位开始的偏移位置截取一位，之后我们只要修改位置参数即可获取其他的数据 |
+| left() | left 函数是左截取函数，left 的用法为 left(str,length)。这里的 str 是被截取的字符串，length 为被截取的长度。在盲注中可以使用 left(user(), 1) 来左截取一位字符。但是，如果是 left(user(), 2)，则会将 user() 的前两位都截取出来。这样的话，我们需要在匹配输出的字符串之前增加前缀，把之前几次的结果添加到这次的结果之前。使用样例如下：假设 user() 函数返回的字符串是 "admin"，那么 select a from b where left(a,1) = 'a' 会返回真，在探测第二位的时候，需要把第一位添加到当前探测位之前，比如：select a from b where left(a,2) = 'ad'以此类推，直到读取到全部内容为止 |
+| right() | right 函数是右截取函数。使用方法与 left 函数类似，可以参考 left 函数的用法 |
 
 #### (2) 转换函数
 
 <div style="text-align: center;">表2-2 转换函数及其说明</div>
 
-<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>函数名</td><td style='text-align: center; word-wrap: break-word;'>功能及使用方法</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>ascii()</td><td style='text-align: center; word-wrap: break-word;'>ascii 函数的作用是将字符串转换为 ASCII 码，这样我们就可以避免在 Payload 中出现单引号。使用方法为 ascii(char)，这里的 char 为一个字符，在盲注中一般为单个字母。如果 char 为一串字符串，则返回结果将是第一个字母的 ASCII 码。我们在使用中通常与 substr 函数相结合，如 ascii(substr(user(), 1, 1))，这样可以获得 user() 的第一位字符的 ASCII 码</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>hex()</td><td style='text-align: center; word-wrap: break-word;'>Hex 函数可以将字符串的值转换为十六进制的值。在 ascii 函数被禁止时，或者是需要将二进制数据写入文件时可以使用该函数，使用方法类似于 ascii 函数</td></tr></table>
+| 函数名 | 功能及使用方法 |
+| --- | --- |
+| ascii() | ascii 函数的作用是将字符串转换为 ASCII 码，这样我们就可以避免在 Payload 中出现单引号。使用方法为 ascii(char)，这里的 char 为一个字符，在盲注中一般为单个字母。如果 char 为一串字符串，则返回结果将是第一个字母的 ASCII 码。我们在使用中通常与 substr 函数相结合，如 ascii(substr(user(), 1, 1))，这样可以获得 user() 的第一位字符的 ASCII 码 |
+| hex() | Hex 函数可以将字符串的值转换为十六进制的值。在 ascii 函数被禁止时，或者是需要将二进制数据写入文件时可以使用该函数，使用方法类似于 ascii 函数 |
 
 #### (3) 比较函数
 
 <div style="text-align: center;">表2-3 比较函数及其说明</div>
 
-<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>函数名</td><td style='text-align: center; word-wrap: break-word;'>功能及使用方法</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>if()</td><td style='text-align: center; word-wrap: break-word;'>if函数是盲注中经常使用的函数，if函数的作用与1=1和1=2的原理类似。如果我们要盲注的对象为假，则可以通过if的返回结果对页面进行控制。使用方法为if(cond,Ture_result, False_result) 其中，cond为判断条件，Ture_result为真时的返回结果，False_result为假时的返回结果。使用样例如下： ?id=1 and 1=if(ascii(substr(user(),1,1))=97,1,2) 如果user的第一位是‘a’则将返回1，否则就返回2。然而，如果返回的是2，则会使and后的条件不成立，导致返回错误页面。这时我们可以根据页面的长度进行判定，从而达到盲注的效果</td></tr></table>
+| 函数名 | 功能及使用方法 |
+| --- | --- |
+| if() | if函数是盲注中经常使用的函数，if函数的作用与1=1和1=2的原理类似。如果我们要盲注的对象为假，则可以通过if的返回结果对页面进行控制。使用方法为if(cond,Ture_result, False_result) 其中，cond为判断条件，Ture_result为真时的返回结果，False_result为假时的返回结果。使用样例如下： ?id=1 and 1=if(ascii(substr(user(),1,1))=97,1,2) 如果user的第一位是‘a’则将返回1，否则就返回2。然而，如果返回的是2，则会使and后的条件不成立，导致返回错误页面。这时我们可以根据页面的长度进行判定，从而达到盲注的效果 |
 
 ==注意：在盲注的题目及真实的渗透测试中，有时候使用Sqlmap可能会存在误报。==原因在于在一些数据返回页面及接口返回数据时可能会存在返回的是随机字符串（如，时间戳或防止CSRF的Token等）导致页面的长度发生变化的情况，这时候我们的工具及自动化检测脚本会出现误报。我们需要冷静地对Payload和返回结果进行分析。
 
-> [!tip]- 本节要点
-> 1. 发现方法：`and 1=1` / `and 1=2`（整型），字符串型用 `'and'1'='1` / `'or'1'='2` 闭合引号；
-> 2. 三件套：截取（substr/left/right）+ 转换（ascii/hex）+ 比较（if），逐位爆破；
-> 3. left 爆破要携带前缀：前次结果拼到本次条件前；
-> 4. 页面长度可能因时间戳/Token 等随机串变化，Sqlmap 会误报，要人工分析。
-
+???+ tip "本节要点"
+    1. 发现方法：`and 1=1` / `and 1=2`（整型），字符串型用 `'and'1'='1` / `'or'1'='2` 闭合引号；
+    2. 三件套：截取（substr/left/right）+ 转换（ascii/hex）+ 比较（if），逐位爆破；
+    3. left 爆破要携带前缀：前次结果拼到本次条件前；
+    4. 页面长度可能因时间戳/Token 等随机串变化，Sqlmap 会误报，要人工分析。
 ## 五、时间盲注
 
 时间盲注出现的本质原因也是由于服务器端拼接了SQL语句，但是正确和错误存在同样的回显。错误信息被过滤，不过，可以通过页面响应时间进行按位判断数据。由于时间盲注中的函数是在数据库中执行的，因此在CTF比赛中关于时间盲注的题目比较少，原因在于sleep函数或者benchmark函数的过多执行会让服务器负载过高，再加上CTF里面的一些"搅屎棍"的参与，会让题目挂掉。不过，有时候我们还是会在CTF中遇到这些题目，这里简单说一下注入的方法。
@@ -243,13 +231,15 @@ Bool盲注的原理是如果题目后端拼接了SQL语句，and 1=1为真时不
 
 <div style="text-align: center;">表2-4 可用来延时的函数</div>
 
-<table border=1 style='margin: auto; word-wrap: break-word;'><tr><td style='text-align: center; word-wrap: break-word;'>函数名</td><td style='text-align: center; word-wrap: break-word;'>功能及使用方法</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>sleep()</td><td style='text-align: center; word-wrap: break-word;'>sleep是睡眠函数，可以使查询数据时间显数据的响应时间加长。使用方法如sleep(N)，这里的N为睡眠的时间。使用时可以配合if进行使用。如：if(ascii(substr(user(), 1, 1))=114, sleep(5), 2)这样的话，如果user的第一位是‘r’，则页面返回将延迟5秒。这里需要注意的是，这5秒是在服务器端的数据库中延迟的，实际情况可能会由于网络环境等因素延迟更长时间</td></tr><tr><td style='text-align: center; word-wrap: break-word;'>benchmark()</td><td style='text-align: center; word-wrap: break-word;'>benchmark函数原本是用来重复执行某个语句的函数，我们可以用这个函数来测试数据库的读写性能等。使用方法如下：benchmark(N, expression)其中，N为执行的次数，expression为表达式。如果需要进行自注，我们通常需要进行消耗时间和性能的计算，比如哈希计算函数MD5()，将MD5函数重复执行数万次则可以达到延迟的效果，而具体情况需要根据不同比赛的服务器性能及网络情况来决定</td></tr></table>
+| 函数名 | 功能及使用方法 |
+| --- | --- |
+| sleep() | sleep是睡眠函数，可以使查询数据时间显数据的响应时间加长。使用方法如sleep(N)，这里的N为睡眠的时间。使用时可以配合if进行使用。如：if(ascii(substr(user(), 1, 1))=114, sleep(5), 2)这样的话，如果user的第一位是‘r’，则页面返回将延迟5秒。这里需要注意的是，这5秒是在服务器端的数据库中延迟的，实际情况可能会由于网络环境等因素延迟更长时间 |
+| benchmark() | benchmark函数原本是用来重复执行某个语句的函数，我们可以用这个函数来测试数据库的读写性能等。使用方法如下：benchmark(N, expression)其中，N为执行的次数，expression为表达式。如果需要进行自注，我们通常需要进行消耗时间和性能的计算，比如哈希计算函数MD5()，将MD5函数重复执行数万次则可以达到延迟的效果，而具体情况需要根据不同比赛的服务器性能及网络情况来决定 |
 
-> [!tip]- 本节要点
-> 1. 与 Bool 盲注的差别只在判定方式：按页面响应时间而不是回显差异；
-> 2. sleep(N) 配 if 使用；benchmark(N, expression) 用重复执行 MD5() 等达到延迟；
-> 3. 延迟发生在服务器端数据库，实际感知时间会因网络更长。
-
+???+ tip "本节要点"
+    1. 与 Bool 盲注的差别只在判定方式：按页面响应时间而不是回显差异；
+    2. sleep(N) 配 if 使用；benchmark(N, expression) 用重复执行 MD5() 等达到延迟；
+    3. 延迟发生在服务器端数据库，实际感知时间会因网络更长。
 ## 六、二次注入
 
 二次注入的起因是==数据在第一次入库的时候进行了一些过滤及转义，当这条数据从数据库中取出来在SQL语句中进行拼接，而在这次拼接中没有进行过滤时，我们就能执行构造好的SQL语句了==。
@@ -347,11 +337,10 @@ if __name__ == __main__':  # 笔记注：原文如此，疑为 if __name__ == '_
 
 在遇到类似思路比较复杂的二次注入题目的时候，我们更要冷静地分析，不断地尝试，这样才能挖到题目的考点，从而达到获取flag的目的。
 
-> [!tip]- 本节要点
-> 1. 本质：首次入库被过滤转义，取出拼接时未过滤 → 执行构造语句；
-> 2. 常与报错注入/Bool 盲注结合，需要脚本模拟"注册→登录→触发"全流程；
-> 3. 页面返回长度也可作为盲注判定依据（如 >700 判真）。
-
+???+ tip "本节要点"
+    1. 本质：首次入库被过滤转义，取出拼接时未过滤 → 执行构造语句；
+    2. 常与报错注入/Bool 盲注结合，需要脚本模拟"注册→登录→触发"全流程；
+    3. 页面返回长度也可作为盲注判定依据（如 >700 判真）。
 ## 七、limit之后的注入
 
 研究发现，在MySQL版本号大于5.0.0且小于5.6.6的时候，在如下位置中可以进行注入：
@@ -367,9 +356,8 @@ SELECT field FROM user WHERE id >0 ORDER BY id LIMIT 1,1 procedure
 analyse(extractvalue(rand(), concat(0x3a,version())),1);
 ```
 
-> [!note]- 什么是 limit 之后的注入？
-> 在 MySQL 5.0.0~5.6.6 版本中，LIMIT 子句后可直接接 procedure analyse，配合 extractvalue 等报错函数实现注入。
-
+??? note "什么是 limit 之后的注入？"
+    在 MySQL 5.0.0~5.6.6 版本中，LIMIT 子句后可直接接 procedure analyse，配合 extractvalue 等报错函数实现注入。
 ## 八、注入点的位置及发现
 
 前面我们介绍了多种注入方式及利用方式，下面继续介绍注入点的位置及注入点的发现方法。
@@ -422,11 +410,10 @@ SELECT UserName FROM User WHERE id = $id; // 参数为数字
 
 比如，我们在遇到的题目中抓到了链接http://example.com/?id=2，就可以进行如下的尝试http://example.com/?id=3-1，如果结果与http://example.com/?id=2相同，则证明id这个输入点可能存在SQL注入漏洞。
 
-> [!tip]- 本节要点
-> 1. 注入点四个常见位置：GET、POST、User-Agent、Cookies；
-> 2. Sqlmap 检测：level=3 检 User-Agent，level=2 检 Cookies；
-> 3. 判断存在性三招：插单引号看报错、and 1=1/1=2、数字加减（?id=3-1 与 ?id=2 相同则可疑）。
-
+???+ tip "本节要点"
+    1. 注入点四个常见位置：GET、POST、User-Agent、Cookies；
+    2. Sqlmap 检测：level=3 检 User-Agent，level=2 检 Cookies；
+    3. 判断存在性三招：插单引号看报错、and 1=1/1=2、数字加减（?id=3-1 与 ?id=2 相同则可疑）。
 ## 九、绕过
 
 在CTF中，关于SQL注入的题目一般都会涉及绕过。所以，掌握花式的绕过技术是必不可少的。我们需要熟悉数据库的各种特性，并利用开阔的思维来对SQL注入的防护措施进行绕过操作。
@@ -437,11 +424,11 @@ SQL注入的题目中一般都有绕过这样的类型，常见的绕过方式�
 
 即过滤如select、or、from等的关键字。有些题目在过滤时没有进行递归过滤，而且刚好将关键字替换为空。这时候，我们可以使用穿插关键字的方法进行绕过操作，如：
 
-<div style="text-align: center;"><img src="assets/chunk_00057_00070_page_00009_img_in_image_box_153_951_1070_1123.webp" alt="Image" width="74%" /></div>
+![图片](/books/ctf-special-training/assets/chunk_00057_00070_page_00009_img_in_image_box_153_951_1070_1123.webp){ width="100%" }
 
 也可以通过大小写转换来进行绕过，如：
 
-<div style="text-align: center;"><img src="assets/chunk_00057_00070_page_00009_img_in_image_box_154_1242_1070_1415.webp" alt="Image" width="74%" /></div>
+![图片](/books/ctf-special-training/assets/chunk_00057_00070_page_00009_img_in_image_box_154_1242_1070_1415.webp){ width="100%" }
 
 有时候，过滤函数是通过十六进制进行过滤的。我们可以对关键字的个别字母进行替换，如：
 
@@ -518,17 +505,17 @@ SELECT user, password from users
 where user_id=0elunion select 1,2
 ```
 
-<div style="text-align: center;"><img src="assets/chunk_00057_00070_page_00013_img_in_image_box_151_141_1080_714.webp" alt="Image" width="75%" /></div>
+![图片](/books/ctf-special-training/assets/chunk_00057_00070_page_00013_img_in_image_box_151_141_1080_714.webp){ width="100%" }
 
 <div style="text-align: center;">图2-4 空白字符（换行符）绕过空格过滤的示例</div>
 
-<div style="text-align: center;"><img src="assets/chunk_00057_00070_page_00013_img_in_image_box_152_804_1080_1340.webp" alt="Image" width="75%" /></div>
+![图片](/books/ctf-special-training/assets/chunk_00057_00070_page_00013_img_in_image_box_152_804_1080_1340.webp){ width="100%" }
 
 <div style="text-align: center;">图2-5 使用反引号绕过空格过滤的示例</div>
 
 结果如图2-6所示，同样可以达到绕过的效果。
 
-<div style="text-align: center;"><img src="assets/chunk_00071_00084_page_00000_img_in_image_box_153_232_1079_454.webp" alt="Image" width="75%" /></div>
+![图片](/books/ctf-special-training/assets/chunk_00071_00084_page_00000_img_in_image_box_153_232_1079_454.webp){ width="100%" }
 
 <div style="text-align: center;">图2-6 使用科学计数法进行绕过</div>
 
@@ -546,12 +533,11 @@ where user_id=0elunion select 1,2
 
 这种绕过方式曾在2016年HITCON的BabyTrick题目中作为一个绕过的考点出现过。
 
-> [!tip]- 本节要点
-> 1. 关键字过滤：穿插关键字（selecselectt）、大小写、个别字母替换、双重 URL 编码；
-> 2. 空格过滤：注释（-- // /**/ ;%00）、%2520、空白字符表、反引号/加号/减号/感叹号、科学计数法（0e）；
-> 3. 单引号过滤：PHP<5.4 + GBK 等宽字节编码时可 %df 宽字节注入（现已少见）；
-> 4. 相等过滤：utf8_general_ci 下 Å=A、Ö=O、Ü=U、β=s；utf8_unicode_ci 下 β=ss。
-
+???+ tip "本节要点"
+    1. 关键字过滤：穿插关键字（selecselectt）、大小写、个别字母替换、双重 URL 编码；
+    2. 空格过滤：注释（-- // /**/ ;%00）、%2520、空白字符表、反引号/加号/减号/感叹号、科学计数法（0e）；
+    3. 单引号过滤：PHP<5.4 + GBK 等宽字节编码时可 %df 宽字节注入（现已少见）；
+    4. 相等过滤：utf8_general_ci 下 Å=A、Ö=O、Ü=U、β=s；utf8_unicode_ci 下 β=ss。
 ## 十、SQL读写文件
 
 在了解了SQL注入方法与过滤绕过的方法之后，我们再来看一下如何用SQL语句来读写系统文件。有一些比赛题目存在SQL注入漏洞，但是flag并不在数据库中，这时候就需要考虑是否要读取文件或是写Shell来进一步进行渗透。
@@ -595,12 +581,11 @@ select username from user where uId = $id
 
 此外，在权限足够高的时候，还可以写入UDF库执行系统命令来进一步扩大攻击面。
 
-> [!tip]- 本节要点
-> 1. 前置条件：MySQL 用户有 File 权限；
-> 2. 读：load_file，引号被过滤时用文件名十六进制（0x2f6574632f686f737473 = /etc/hosts）；
-> 3. 写：into outfile/dumpfile，目标文件必须不存在；unhex 绕过引号；
-> 4. 权限够高可写 UDF 库执行系统命令。
-
+???+ tip "本节要点"
+    1. 前置条件：MySQL 用户有 File 权限；
+    2. 读：load_file，引号被过滤时用文件名十六进制（0x2f6574632f686f737473 = /etc/hosts）；
+    3. 写：into outfile/dumpfile，目标文件必须不存在；unhex 绕过引号；
+    4. 权限够高可写 UDF 库执行系统命令。
 ## 十一、小结
 
 SQL注入单独作为比赛中的考点就已经较为复杂了，出题人可能还会配合其他的漏洞考察一些"脑洞大开"的获取flag的方式，那就更复杂了。
@@ -648,40 +633,36 @@ mindmap
 
 ## 易错点
 
-> [!warning] 易错点
-> 1. ==Sqlmap 在盲注题中可能因随机串（时间戳/Token）误报==——页面长度变化不一定是注入结果，要人工分析 Payload 与返回。
-> 2. ==写文件时目标文件不能已存在==，否则直接报错。
-> 3. ==宽字节注入（%df）仅限 PHP<5.4 + GBK 等宽字节编码==，新环境基本用不上。
-> 4. floor 报错模板中表名建议十六进制编码，直接引号包裹会触发单引号报错。
-> 5. 时间盲注的 sleep 延迟发生在服务端，实际等待时间会比设置值更长，脚本超时要留余量。
-
-> [!note]- 自测题
-> **基础**
-> 1. SQL 注入的成因是什么？可回显与不可回显注入分别包括哪些类型？
-> 2. 联合查询注入中，URL 参数里的 `+` 号起什么作用？
-> 3. updatexml、floor、exp 三种报错注入的报错原理分别是什么？
-> 4. Bool 盲注如何发现注入点？字符串型注入如何闭合单引号？
-> 5. 时间盲注常用的两个延时函数是什么？
-> 6. Sqlmap 检测 User-Agent 和 Cookies 中的注入分别需要什么参数？
-> 7. 过滤空格时有哪些绕过方式（至少说 3 种）？
-
-> [!note]- 自测题（进阶）
-> 8. 二次注入的成因是什么？为什么比赛中通常需要自己写脚本？
-> 9. MySQL 哪些版本区间可以在 LIMIT 之后注入？用什么函数？
-> 10. SQL 读写文件需要什么权限？读文件用哪个函数？写文件的两个函数是什么？
-
-> [!note]- 参考答案
-> 1. 开发者将用户输入直接与 SQL 语句拼接导致语句可控；可回显：联合查询、报错注入、DNS 外带；不可回显：Bool 盲注、时间盲注。
-> 2. 服务器处理用户输入时会把 `+` 转义为空格，用于替代 URL 中不能直接写的空格。
-> 3. updatexml 是函数自身报错；floor 是 rand 与 order by/group by 冲突；exp 是溢出报错。
-> 4. 输入点后加 `and 1=1` 与 `and 1=2`（整型）；字符串型用 `'and'1'='1`、`'or'1'='2` 闭合引号。
-> 5. sleep() 与 benchmark()。
-> 6. User-Agent 用 level=3；Cookies 用 level=2。
-> 7. 注释符（--、//、/**/、;%00）、二次 URL 编码（%2520）、空白字符（%0a 等）、反引号/加号/减号/感叹号、科学计数法。
-> 8. 首次入库被过滤转义，取出拼接时未过滤即可执行构造语句；业务逻辑复杂，需脚本模拟注册→登录→触发全流程。
-> 9. MySQL 5.0.0~5.6.6，LIMIT 后接 procedure analyse，配合 extractvalue 等报错函数。
-> 10. File 权限；load_file 读；into outfile 与 into dumpfile 写。
-
+!!! warning "易错点"
+    1. ==Sqlmap 在盲注题中可能因随机串（时间戳/Token）误报==——页面长度变化不一定是注入结果，要人工分析 Payload 与返回。
+    2. ==写文件时目标文件不能已存在==，否则直接报错。
+    3. ==宽字节注入（%df）仅限 PHP<5.4 + GBK 等宽字节编码==，新环境基本用不上。
+    4. floor 报错模板中表名建议十六进制编码，直接引号包裹会触发单引号报错。
+    5. 时间盲注的 sleep 延迟发生在服务端，实际等待时间会比设置值更长，脚本超时要留余量。
+??? note "自测题"
+    **基础**
+    1. SQL 注入的成因是什么？可回显与不可回显注入分别包括哪些类型？
+    2. 联合查询注入中，URL 参数里的 `+` 号起什么作用？
+    3. updatexml、floor、exp 三种报错注入的报错原理分别是什么？
+    4. Bool 盲注如何发现注入点？字符串型注入如何闭合单引号？
+    5. 时间盲注常用的两个延时函数是什么？
+    6. Sqlmap 检测 User-Agent 和 Cookies 中的注入分别需要什么参数？
+    7. 过滤空格时有哪些绕过方式（至少说 3 种）？
+??? note "自测题（进阶）"
+    8. 二次注入的成因是什么？为什么比赛中通常需要自己写脚本？
+    9. MySQL 哪些版本区间可以在 LIMIT 之后注入？用什么函数？
+    10. SQL 读写文件需要什么权限？读文件用哪个函数？写文件的两个函数是什么？
+??? note "参考答案"
+    1. 开发者将用户输入直接与 SQL 语句拼接导致语句可控；可回显：联合查询、报错注入、DNS 外带；不可回显：Bool 盲注、时间盲注。
+    2. 服务器处理用户输入时会把 `+` 转义为空格，用于替代 URL 中不能直接写的空格。
+    3. updatexml 是函数自身报错；floor 是 rand 与 order by/group by 冲突；exp 是溢出报错。
+    4. 输入点后加 `and 1=1` 与 `and 1=2`（整型）；字符串型用 `'and'1'='1`、`'or'1'='2` 闭合引号。
+    5. sleep() 与 benchmark()。
+    6. User-Agent 用 level=3；Cookies 用 level=2。
+    7. 注释符（--、//、/**/、;%00）、二次 URL 编码（%2520）、空白字符（%0a 等）、反引号/加号/减号/感叹号、科学计数法。
+    8. 首次入库被过滤转义，取出拼接时未过滤即可执行构造语句；业务逻辑复杂，需脚本模拟注册→登录→触发全流程。
+    9. MySQL 5.0.0~5.6.6，LIMIT 后接 procedure analyse，配合 extractvalue 等报错函数。
+    10. File 权限；load_file 读；into outfile 与 into dumpfile 写。
 ## 参考资料
 
 - 原书：CTF特训营（FlappyPig战队 著，机械工业出版社 2020）。
