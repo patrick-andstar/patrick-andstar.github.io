@@ -39,6 +39,7 @@ nav:
     - 00-目录: books/ctf-special-training/00-目录.md
     - 第1章 常用工具安装及使用: books/ctf-special-training/第1章 常用工具安装及使用.md
     - 第2章 SQL注入攻击: books/ctf-special-training/第2章 SQL注入攻击.md
+    - 第3章 跨站脚本攻击: books/ctf-special-training/第3章 跨站脚本攻击.md
 markdown_extensions:
 - admonition
 - attr_list
