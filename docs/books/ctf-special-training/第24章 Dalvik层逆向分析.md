@@ -99,7 +99,7 @@ Dalvik虚拟机中只有11种变量类型，这些类型可用来表示Java中�
 
 L类型可用来表示Java中的类，例如Java中的类java.lang.String对应的L类型是“Ljava/lang/String;”的形式。字母L后直接跟包的绝对路径，Java表示中的“.”替换为“/”，最后用分号“;”表示对象名结束。
 
-[类型可用来表示基本类型和Java类型的数组。一般表示为[后面紧跟基本类型描述符。例如[I表示int]，I表示int]，I表示int]，以此类推，注意多维数组的维数最多为255个。[类型也可以与L类型结合使用，例如“[Ljava/lang/String;”表示Java中的String[]。
+[类型可用来表示基本类型和Java类型的数组。一般表示为[后面紧跟基本类型描述符。例如[I表示int]，[[I表示int]]]，[[I表示int]]]，以此类推，注意多维数组的维数最多为255个。[类型也可以与L类型结合使用，例如“[Ljava/lang/String;”表示Java中的String[]。
 
 #### 24.1.3 方法
 
@@ -351,10 +351,10 @@ jd-gui是开源软件，读者可以从GitHub上
 
 运行界面如图24-1所示，直接将Jar文件拖入，即可反编译查看Java代码。
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00042_img_in_image_box_203_186_1029_1167.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00042_img_in_image_box_203_186_1029_1167.webp){ width="67%" }
 
 
-<div style="text-align: center;">图24-1 JD-GUI布局</div>
+*图24-1 JD-GUI布局*
 
 #### 24.2.4 使用FernFlower反编译Jar文件
 
@@ -388,10 +388,10 @@ Android Killer集合了之前讲过的Apktool、dex2jar、jd-gui、signapk、adb
 
 如图24-2所示的是Android Killer工作的主界面，蓝色的主界面看起来非常的清爽，每个功能键都有标注，非常容易上手。
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00047_img_in_image_box_154_136_1080_1273.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00047_img_in_image_box_154_136_1080_1273.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-2 Android Killer布局</div>
+*图24-2 Android Killer布局*
 
 将要反编译的APK文件直接拖入Android Killer中，或者使用“打开”操作，Android Killer会自动使用Apktool反编译APK文件，在“工程管理器”选项卡中，可以浏览当前的反编译目录，双击相应的smali文件即可进行编辑，可以看到，Android Killer对BakSmali代码进行了代码高亮处理，如图24-3所示。
 
@@ -403,38 +403,38 @@ Android Killer的重打包功能也非常方便。只需点击“编译”按钮
 
 Android Killer还设有“插入代码管理器”，可以将自己经常用到的插桩代码保存起来，使用时只需点开复制粘贴即可，不用再到处去找自己保存到哪里了，如图24-7所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00049_img_in_image_box_157_139_1080_1274.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00049_img_in_image_box_157_139_1080_1274.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-3 Android Killer反编译</div>
+*图24-3 Android Killer反编译*
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00050_img_in_image_box_154_142_1080_825.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00050_img_in_image_box_154_142_1080_825.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-4 Android Killer小工具</div>
+*图24-4 Android Killer小工具*
 
 
 最后，需要注意的一点是，Android Killer毕竟还是基于Apktool等工具来实现的，目前Android Killer已经好久没有升级了，但是Apktool等工具依旧在更新，如果我们重打包失败，可以考虑失败是否由于Apktool版本过低导致。在Android Killer中升级Apktool很简单，点击“APKTOOL管理器”按钮打开APKTOOL管理器，点击下方的“下载最新的Apktool”，根据网页的提示即可将Apktool升级至最新版本，如图24-8所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00051_img_in_image_box_155_142_1080_1272.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00051_img_in_image_box_155_142_1080_1272.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-5 Android Killer反编译</div>
+*图24-5 Android Killer反编译*
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00052_img_in_image_box_155_141_1080_1271.webp){ width="100%" }
-
-
-<div style="text-align: center;">图24-6 Android Killer查看字符串</div>
-
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00053_img_in_image_box_154_144_1080_1079.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00052_img_in_image_box_155_141_1080_1271.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-7 Android Killer代码管理器</div>
+*图24-6 Android Killer查看字符串*
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00054_img_in_image_box_155_144_1081_895.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00053_img_in_image_box_154_144_1080_1079.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-8 Android Killer更新Apktool</div>
+*图24-7 Android Killer代码管理器*
+
+![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00054_img_in_image_box_155_144_1081_895.webp){ width="75%" }
+
+
+*图24-8 Android Killer更新Apktool*
 
 
 ### 2. jadx
@@ -495,7 +495,7 @@ public class MainActivity extends u()
 }
 ```
 
-<div style="text-align: center;">图24-9 jadx界面</div>
+*图24-9 jadx界面*
 
 
 ### 3. APK Studio
@@ -527,9 +527,9 @@ make
 
 使用 “打开” 操作或者将APK文件直接拖入APK Studio中，APK Studio就会自动调用Apktool进行反编译，如图24-10所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00059_img_in_image_box_192_337_1035_1265.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00841_00900_page_00059_img_in_image_box_192_337_1035_1265.webp){ width="68%" }
 
-<div style="text-align: center;">图24-10 APK Studio界面</div>
+*图24-10 APK Studio界面*
 
 
 点击上面的锤子形状的按钮即可进行重打包操作，编译成功后，下方会有提示。点击钥匙形状的按钮可以进行签名操作。APK Studio 的签名操作需要使用自己的keystore，若没有keystore则可以用下面的命令生成一个（“keytool”工具是安装Java的时候自带的）：
@@ -540,10 +540,10 @@ keytool -genkey -alias demo.keystore -keyalg RSA -validity 40000 -keystore demo.
 
 点击钥匙按钮，输入keystore路径以及keystore密码、key的别名、key的密码，即可进行签名操作，如图24-11所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00000_img_in_image_box_337_839_884_1153.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00000_img_in_image_box_337_839_884_1153.webp){ width="44%" }
 
 
-<div style="text-align: center;">图24-11 APK Studio 签名</div>
+*图24-11 APK Studio 签名*
 
 APK Studio签名底层使用的是jarsigner工具，jarsigner工具也是开发APK时使用的默认签名工具，但是使用jarsigner对重打包的APK文件进行签名时，失败率却是比较高的，因此使用APK Studio对重打包的APK文件进行签名往往会不成功，这里还是推荐使用24.2.1节的签名方法。
 
@@ -565,18 +565,18 @@ JEB最出色同时也是最吸引笔者的一项功能就是其交叉引用功�
 
 JEB的结构如图24-12所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00004_img_in_image_box_170_171_1064_1175.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00004_img_in_image_box_170_171_1064_1175.webp){ width="73%" }
 
 
-<div style="text-align: center;">图24-12 JEB</div>
+*图24-12 JEB*
 
 
 启动完毕的界面如图24-13所示，可以看到在没有打开APK的情况下，已经有很多标签页显示出来了。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00005_img_in_image_box_150_140_1080_1191.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00005_img_in_image_box_150_140_1080_1191.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-13 JEB布局</div>
+*图24-13 JEB布局*
 
 
 将APK文件拖入JEB中的“工程浏览器”下，或者使用“打开”操作打开APK文件，就可以直接开始反编译了，如图24-14所示。左边是
@@ -585,15 +585,15 @@ JEB的结构如图24-12所示。
 
 选中相应的类，按下 “TAB” 按钮，JEB会切换到 “反编译的 Java” 一栏中，将反编译后的 Java 代码显示出来，如图24-15所示。在 “反编译的 Java” 一栏中直接双击目标类，也会将反编译后的 Java 代码直接显示出来。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00007_img_in_image_box_152_139_1079_1191.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00007_img_in_image_box_152_139_1079_1191.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-14 JEB反编译Smali</div>
+*图24-14 JEB反编译Smali*
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00008_img_in_image_box_152_143_1079_1190.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00008_img_in_image_box_152_143_1079_1190.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-15 JEB反编译Java</div>
+*图24-15 JEB反编译Java*
 
 
 我们重点来看一下“反编译的Java”一栏中有什么重要的功能。
@@ -605,21 +605,21 @@ add_android
 coord: (0,29,23) | addr: Loom/a/easyjava/b:->a(V | loc: ? Available decompilers: dex, x86, x86_64, arm, mips
 
 
-<div style="text-align: center;">图24-16 JEB右键</div>
+*图24-16 JEB右键*
 
 
 交叉引用功能可用于查看该方法在其他哪个地方被使用，如图24-17所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00012_img_in_image_box_154_146_1078_1419.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00012_img_in_image_box_154_146_1078_1419.webp){ width="75%" }
 
-<div style="text-align: center;">图24-17 JEB交叉引用</div>
+*图24-17 JEB交叉引用*
 
 
 注释功能类似于IDA的注释功能，添加注释后会在该行语句的末尾添加注释，以方便查看，如图24-18所示。
 
 ?
 
-<div style="text-align: center;">图24-18 JEB添加注释</div>
+*图24-18 JEB添加注释*
 
 
 改变进制常数，也就是进制转换功能，是笔者最喜欢的功能之一。JEB的进制转换功能可以使整数在十进制、十六进制和八进制之间互相转换。不要小看这个进制转换功能，在反编译的过程中，该功能能够节约大量的时间，尤其是在转换进制查看资源引用时会特别方便。
@@ -634,15 +634,15 @@ coord: (0,29,23) | addr: Loom/a/easyjava/b:->a(V | loc: ? Available decompilers:
 
 以上就是对使用JEB进行静态分析的基本介绍了，关于使用JEB2进行动态调试的相关内容，将在24.3节中详细介绍。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00016_img_in_image_box_152_139_1079_1192.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00016_img_in_image_box_152_139_1079_1192.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-19 JEB查看Manifest.xml</div>
+*图24-19 JEB查看Manifest.xml*
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00017_img_in_image_box_153_143_1079_1189.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00017_img_in_image_box_153_143_1079_1189.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-20 JEB查看资源文件</div>
+*图24-20 JEB查看资源文件*
 
 #### 24.2.7 其他的静态分析软件
 
@@ -652,9 +652,9 @@ coord: (0,29,23) | addr: Loom/a/easyjava/b:->a(V | loc: ? Available decompilers:
 
 逆向工具IDA Pro也是支持对DEX文件的静态分析的，只要将APK文件拖入IDA Pro中，在弹出的窗口中选择class.dex，IDA Pro就会自动识别出DEX的文件格式，并且对其进行反编译，如图24-21所示。更多关于IDA Pro的内容可参阅网上相关信息。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00019_img_in_image_box_194_196_1038_1295.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00019_img_in_image_box_194_196_1038_1295.webp){ width="68%" }
 
-<div style="text-align: center;">图24-21 IDA Pro反编译Dex</div>
+*图24-21 IDA Pro反编译Dex*
 
 ### 24.3 动态调试
 
@@ -708,7 +708,7 @@ $ adb logcat l grep PWN
 \underline{V/PWN} ( 2872): flag{this_is_flag}
 ```
 
-<div style="text-align: center;">图24-22 log法打印flag</div>
+*图24-22 log法打印flag*
 
 #### 24.3.2 smali动态调试
 
@@ -762,30 +762,30 @@ JEB2相比JEB1的进步之处就是它增加了APK的动态调试功能，而且
 <div style="text-align: center;">⚫️ ⚫️ ⚪️</div>
 
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00029_img_in_image_box_193_212_1032_1248.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00029_img_in_image_box_193_212_1032_1248.webp){ width="68%" }
 
 
 coord: (8601,26,32) | addr: Lcom/a/sample/t.../onClick(Android/View/View/V+80h | loc: T
 
-<div style="text-align: center;">图24-23 JEB动态调试界面</div>
+*图24-23 JEB动态调试界面*
 
 
 使用JEB2的动态调试功能前，需保证系统设定了ro.debuggable属性或者APK本身具有android:debuggable="true"属性，然后就可以调试了。
 
 开始调试的方法非常简单，首先在手机上运行APK；然后点击JEB2上方的调试按钮，在弹出的对话框中选择目标手机以及要调试的App的名字，点击Attach，即可进入调试模式。需要注意的是，目标App的Flags一栏中需要有D属性，如果没有，则是系统的ro.debuggable属性没有设置好，需要重新设置，如图24-24所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00031_img_in_image_box_169_139_1053_803.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00031_img_in_image_box_169_139_1053_803.webp){ width="72%" }
 
 
-<div style="text-align: center;">图24-24 JEB选择目标进程</div>
+*图24-24 JEB选择目标进程*
 
 
 图24-25中的按钮从左至右分别为调试、运行、暂停、停止、单步进入、单步执行、跳出函数、运行到指针处，都是极为常见的调试按钮。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00031_img_in_image_box_474_1128_746_1165.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00031_img_in_image_box_474_1128_746_1165.webp){ width="22%" }
 
 
-<div style="text-align: center;">图24-25 JEB动态调试按钮</div>
+*图24-25 JEB动态调试按钮*
 
 
 进入JEB2的调试模式之后，Project Explorer一栏中会出现新的一项——VM。VM中包括Locals栏、Breakpoints栏和Threads栏，其中
@@ -794,7 +794,7 @@ Locals栏用于显示局部变量，Breakpoints栏用于显示断点信息，Thr
 
 在BakSmali代码栏中，选择某一行，使用Control+B（macOS系统中是Command+B）快捷键下断点，下了断点的语句会在它的左边显示断点标志。下完想要的断点之后，点击运行按钮，然后触发目标事件，就能将断点下在目标代码处了，这个时候的调试与一般的调试方法一样，如图24-27所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00033_img_in_image_box_156_147_486_746.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00033_img_in_image_box_156_147_486_746.webp){ width="26%" }
 
 
 
@@ -835,13 +835,13 @@ Locals栏用于显示局部变量，Breakpoints栏用于显示断点信息，Thr
 
 b) JEB 动态调试窗口 (2)
 
-<div style="text-align: center;">图 24-26</div>
+*图 24-26*
 
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00034_img_in_image_box_217_216_1007_898.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00034_img_in_image_box_217_216_1007_898.webp){ width="64%" }
 
 
-<div style="text-align: center;">图24-27 JEB动态调试界面</div>
+*图24-27 JEB动态调试界面*
 
 
 总的来说，JEB2的动态调试功能还是非常强大的，能在比赛过程中节约不少的时间。
@@ -860,7 +860,7 @@ Xposed框架从本质上讲采用的是Hook技术，该框架通过在/system/bi
 
 第一种方法比较简单，但是该方法需要具有ROOT权限，并且需要机型与系统版本的支持，该方法多见于5.0以下（不包括5.0）的系统中。打开之前安装的“XposedInstaller”，点击“框架”，会依次出现如图24-28所示的界面，直接点击其中的“安装/更新”即可，图24-28中笔者已经用该方法成功修改了app_process程序。若是“安装/更新”按钮为灰色，则说明你的手机不支持使用该方法进行安装，需要选择第二种方法。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00037_img_in_image_box_166_210_208_275.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00037_img_in_image_box_166_210_208_275.webp){ width="3%" }
 
 
 ## 10 :22
@@ -903,7 +903,7 @@ Xposed框架从本质上讲采用的是Hook技术，该框架通过在/system/bi
 | 安装方式 | 经典（直接写入/system） |  |
 | 重启 | 软重启 |  |
 
-<div style="text-align: center;">图24-28 Xposed框架界面</div>
+*图24-28 Xposed框架界面*
 
 
 第二种方法略微烦琐。
@@ -920,7 +920,7 @@ reboot recovery” 命令，或者在关机状态下按住音量上键和电源�
 
 ## 9 :48
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00040_img_in_image_box_156_207_213_277.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00040_img_in_image_box_156_207_213_277.webp){ width="4%" }
 
 
 ## Framework
@@ -949,7 +949,7 @@ Reboot
 
 Xposed framework version 86 is active.
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00040_img_in_image_box_628_205_684_278.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00040_img_in_image_box_628_205_684_278.webp){ width="4%" }
 
 
 ## Framework
@@ -970,7 +970,7 @@ Soft reboot
 
 Reboot
 
-<div style="text-align: center;">图24-29 Xposed刷机界面</div>
+*图24-29 Xposed刷机界面*
 
 
 完成了app_process的修改工作，只是完成了Hook环境的搭建，下面才是真正进入Hook的过程。
@@ -1110,19 +1110,19 @@ com.a.sample.xposed.Sample
 
 最后编译并安装APK，编译过程中建议关闭proguard混淆，或者将Hook类添加到proguard混淆例外中。安装完成后打开XposedInstaller，点击“模块”，即可看到刚才编写的Xposed模块了，如图24-30所示。点击右边的小方块打上对勾，然后重启手机，即可应用该模块。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00046_img_in_image_box_244_326_338_411.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00046_img_in_image_box_244_326_338_411.webp){ width="7%" }
 
 
 Xposed
 
 Xposed example
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00046_img_in_image_box_926_333_977_373.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00046_img_in_image_box_926_333_977_373.webp){ width="4%" }
 
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00046_img_in_image_box_202_447_1024_1429.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00046_img_in_image_box_202_447_1024_1429.webp){ width="67%" }
 
-<div style="text-align: center;">图24-30 Xposed启动模块</div>
+*图24-30 Xposed启动模块*
 
 
 以上就是Xposed框架的一个简单教程，该教程提供的方法可以满足最基础的Hook操作。同时，Xposed框架作为“Android第一神器”，还提供了很多更加强大的功能，具体可查看Xposed框架的官方文档。
@@ -1137,10 +1137,10 @@ Frida是开源软件，网站位于http://www.frida.re/，源码托管于GitHub�
 
 下面就来介绍在Android系统中使用Frida框架来进行Hook操作的基本方法。Frida的原理如图24-31所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00049_img_in_image_box_152_133_1082_1051.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00049_img_in_image_box_152_133_1082_1051.webp){ width="75%" }
 
 
-<div style="text-align: center;">图24-31 Frida原理</div>
+*图24-31 Frida原理*
 
 
 如图24-31所示，我们要区分Frida框架的三个层次，分别是客户端、服务端、注入代码。客户端，指的是运行在电脑上的Frida程序，这一部分代码主要负责唤醒服务端、将JavaScript语言的Hook代码传递到服务端、接收远程服务端传回的信息、封装远程调用等功能，在
@@ -1341,10 +1341,10 @@ Frida框架对于Dalvik层的Hook就介绍到这里。相对Xposed框架来说�
 
 ProGuard混淆是Android SDK默认的，自带的混淆器，其主要功能是对类名、方法名、变量名等标识符进行混淆，将它们修改为无意义的字母组合，如图24-32所示，我们在APK中经常看见的a、b、c类并不是出题者故意设计的，而是由ProGuard混淆器混淆之后的结果。
 
-![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00059_img_in_image_box_472_597_749_820.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00901_00960_page_00059_img_in_image_box_472_597_749_820.webp){ width="22%" }
 
 
-<div style="text-align: center;">图24-32 ProGuard混淆之后的类</div>
+*图24-32 ProGuard混淆之后的类*
 
 
 ProGuard混淆的开启方式非常简单，只要在编译之前将build.grade配置文件中的minifyEnabled属性设为true即可，因此大部分的题目默认都会开启该混淆。
@@ -1414,11 +1414,11 @@ DEX隐藏也可以称为DEX加壳，就是将真正需要执行的DEX隐藏到�
     6. Log 插桩为何可能不适用于有完整性校验的 APK？
     7. Xposed 与 Frida 的 Hook 代码主要分别使用什么语言？
     8. APK 伪加密为何会影响电脑端解压而不影响 Android 运行？
-
+    
     **进阶**
     9. 如何从 `DexClassLoader` 与文件写入点定位被隐藏的 DEX？
     10. 遇到全是 `a`、`b`、`c` 的类和方法时，如何以可复用方式恢复语义？
-
+    
     **参考答案**
     1. `p` 表示传入参数，`v` 表示局部变量。
     2. 它表示 `java.lang.String` 类的 `valueOf` 方法，接收一个 `int`，返回 `String`。

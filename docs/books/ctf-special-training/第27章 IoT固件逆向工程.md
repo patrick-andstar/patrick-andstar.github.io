@@ -103,10 +103,10 @@ PowerPC简称PPC，其前身为1991年，Apple、IBM、Motorola组成的AIM联�
 
 为了方便大家寻找Datasheet，这里推荐一个网站——http://www.alldatasheet.com/，这个网站几乎收录了所有公开的芯片Datasheet，只要不是非常冷门或者厂商有意保密的文档，在这上面都可以找到。例如，我们需要找STM32F103这一款Cortex M3内核MCU的，直接搜索即可，搜索结果如图27-1所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00032_img_in_image_box_156_471_1075_1312.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00032_img_in_image_box_156_471_1075_1312.webp){ width="75%" }
 
 
-<div style="text-align: center;">图27-1 alldatasheet网站搜索结果页面</div>
+*图27-1 alldatasheet网站搜索结果页面*
 
 数字103后面的字母代号表示了不同的子型号，子型号主要用于区分芯片的一些细节信息，比如FLASH大小、RAM大小，以及管脚等的不同，但架构都是相同的，所以对于软件逆向项目，只需要看其中任意一个即可。
 
@@ -114,10 +114,10 @@ PowerPC简称PPC，其前身为1991年，Apple、IBM、Motorola组成的AIM联�
 
 打开Datasheet，我们首先需要关注芯片的引脚定义，如图27-3所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00034_img_in_image_box_154_165_1081_1017.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00034_img_in_image_box_154_165_1081_1017.webp){ width="75%" }
 
 
-<div style="text-align: center;">图27-2 alldatasheet的下载页面</div>
+*图27-2 alldatasheet的下载页面*
 
 <div style="text-align: center;">Table 5. Medium-density STM32F103xx pin definitions</div>
 
@@ -143,15 +143,15 @@ PowerPC简称PPC，其前身为1991年，Apple、IBM、Motorola组成的AIM联�
 | F2 | J2 | - | E2 | 9 | 16 | - | PC1 | I/O |  | PC1 | ADC12_IN11 |  |
 | E2 | J3 | - | F2 | 10 | 17 | - | PC2 | I/O |  | PC2 | ADC12_IN12 |  |
 
-<div style="text-align: center;">图27-3 Datasheet中的引脚定义</div>
+*图27-3 Datasheet中的引脚定义*
 
 引脚定义给出了芯片每根引脚的位置以及第一功能和复用功能，在调试中，如果设备有I/O或者外设的通信，就会用到这部分信息了，在实际进行硬件调试时，可以使用逻辑分析仪分析对应管脚的信号，或者解串口调试设备进行调试。当然，在CTF比赛中，实际情况下不会存在调试实际硬件的情况，这些情况下我们普遍会使用模拟器进行调试，所以对I/O引脚具体位置的关注可能并不会太多。当然在这里列举的原因在于这部分内容对于单片机的理解非常重要，也是不容忽视的。
 
 然后是内存映射图，从内存映射图中，我们可以分析出固件加载的位置，以及各个外设所在的内存地址范围，没有这部分内容我们将无法确定程序所加载的基地址，因此在IDA中无法得到正确的反汇编结果。图27-4所示的是一个典型的内存分布图。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00037_img_in_image_box_155_152_1071_1408.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00037_img_in_image_box_155_152_1071_1408.webp){ width="74%" }
 
-<div style="text-align: center;">图27-4 datasheet中的内存映射图</div>
+*图27-4 datasheet中的内存映射图*
 
 
 通过阅读STM32F103的内存分布图，我们重点关注 $ ^{*} $的方面具体如下。首先，我们可以看到Flash Memory的内存范围是0x08000000-0x0801FFFF，这段是什么意思？我们都知道单片机的程序是存储在Flash里的，所以Flash的起始地址也就是程序开存放的地址，也是我们使用IDA分析时需要指定的ROM加载地址，只有加载在正确的地址上，才能正确地识别指令。其次是0x20000000开始的SRAM，这部分被称为内存，程序动态执行的变量都会存在该部分。最后要关注0x40000000开始的部分，这部分为外设寄存器映射地址，当程序访问外设寄存器时，会使用这部分地址来访问。
@@ -164,10 +164,10 @@ PowerPC简称PPC，其前身为1991年，Apple、IBM、Motorola组成的AIM联�
 
 首先，我们需要用IDA加载这个hex文件，在加载之前需要注意的是，在Load a New File界面，Processor type要选择ARM Little-endian[ARM]，这一步比较关键，因为Intel hex格式的文件并不包含目标CPU的信息，所以最好自己指定，以方便分析，如图27-5所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00040_img_in_image_box_169_142_1058_816.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00040_img_in_image_box_169_142_1058_816.webp){ width="72%" }
 
 
-<div style="text-align: center;">图27-5 IDA加载Intel hex格式文件的界面</div>
+*图27-5 IDA加载Intel hex格式文件的界面*
 
 
 点击确定后，IDA会自动完成分析，由于Intel hex格式的程序中会包含基地址信息，所以IDA能够将程序加载到正常的基地址，因此只需要选对CPU即可。加载后的界面如图27-6所示。
@@ -175,30 +175,30 @@ PowerPC简称PPC，其前身为1991年，Apple、IBM、Motorola组成的AIM联�
 <div style="text-align: center;">IDA - C:\Users\wjh\Desktop\confusedARM.hex</div>
 
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00041_img_in_image_box_156_185_1083_969.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00041_img_in_image_box_156_185_1083_969.webp){ width="75%" }
 
 
-<div style="text-align: center;">图27-6 IDA加载Intel hex文件后的界面</div>
+*图27-6 IDA加载Intel hex文件后的界面*
 
 
 注意，IDA已经成功识别到程序加载到的基地址是0x08000000，与我们之前Datasheet所指的Flash存储区基地址相吻合，那么，程序是从哪个地址开始执行的呢？注意任何单片机在上电或者Reset的时候，都会事先进入Reset Handler去执行Reset代码，所以我们只需要找到Reset向量的位置即可，也就是Reset Handler的位置。可以看到，程序在开头定义了一些DCD，这部分并没有被IDA识别成代码，而事实上
 
 这部分也确实并非代码，IDA在这方面还是比较智能的。下面简单整理一下这些数据，如图27-7所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00042_img_in_image_box_149_284_1059_822.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00042_img_in_image_box_149_284_1059_822.webp){ width="74%" }
 
 
-<div style="text-align: center;">图27-7 固件起始地址处的数据</div>
+*图27-7 固件起始地址处的数据*
 
 
 我们先看第一个0x20000730，从前面的memory map中可以看出，这部分是SRAM的地址。那么究竟是什么的地址呢？这里介绍一些常识，在与硬件相关的程序中，一般都会定义一些中断向量的位置，Reset也是其中一个中断向量，在复位时，硬件会自动将PC设置为Reset的地址，而其他就是一些定时器、外设的中断向量位置。这个表就称为中断向量表。所以，分析以0x0800000位置开始的内容是中断向量表。那么在这张表中势必会包含Reset向量的位置。首先，Reset代码不可能在SRAM区域中，那么第一个地址0x20000730，不可能为
 
 Reset向量的位置。接着再来看第二个地址0x8000101，这个地址是所有地址里面最低的地址，最有可能是Reset向量的位置，我们到该地址处将数据转换成代码。这里还有一个需要注意的点，那就是这个地址的最低位是1，这也就暗示着实际地址为0x8000100+1，表示实际地址为0x8000100，且指令集为Thumb。所以我们需要先按Alt+G将T寄存器值修改为1以将该段代码注释为CODE16，然后直接在0x8000100地址处按C将数据转换为指令即可。最后结果如图27-8所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00043_img_in_image_box_152_584_1086_1256.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00043_img_in_image_box_152_584_1086_1256.webp){ width="76%" }
 
 
-<div style="text-align: center;">图27-8 将数据转为指令之后的效果</div>
+*图27-8 将数据转为指令之后的效果*
 
 可见，IDA识别出了附近的函数调用，其中有意思的是loc_80000EC这个位置，显然，这里设定了SP的值，也就是设定了堆栈指针的位置为0x20000730，这个值是不是似曾相识？没错，在Flash起始地址的值就是该值，它表明了初始堆栈指针的位置。看到这里，应该很明显了，0x08000100地址确实就是整个程序的入口点，也即Reset向量的位置，在该位置处的代码，设定了一系列初始化操作（在sub_8000A00中），以及初始堆栈指针，最终跳至loc_8000188执行。至此，我们已经找到了程序的入口点，可以进行进一步的分析了。
 
@@ -208,10 +208,10 @@ Reset向量的位置。接着再来看第二个地址0x8000101，这个地址是
 
 继续分析上节的例子，我们可以看到0x080000F6处有一个比较大的跳转，一直跳转到了0x8001084，可以猜测跳转到的就是main函数，跟踪进去看一下，如图27-9所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00045_img_in_image_box_178_496_1065_1290.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00045_img_in_image_box_178_496_1065_1290.webp){ width="72%" }
 
 
-<div style="text-align: center;">图27-9 固件main函数的位置</div>
+*图27-9 固件main函数的位置*
 
 由图27-9可以看到，跳转处有一些字符串的操作，判断跳转到的是main函数，然后进行验证。这里有几个地方十分显眼，那就是以0x40000000开头的地址和0x20000000开头的地址，从前面的memory map中我们了解到，前者是特殊功能寄存器的基地址，而后者是SRAM的起始地址。接下来再来看看伪代码，如图27-10所示。
 
@@ -244,7 +244,7 @@ void _fastcall sub_8001084(int a1)
 }
 
 ```
-<div style="text-align: center;">图27-10 main函数的伪代码</div>
+*图27-10 main函数的伪代码*
 
 
 程序中频繁调用了这些寄存器和内存地址，那么现在问题来了，既然这些地址都是具有特殊意义的，在程序中也经常被访问，但以这
@@ -253,25 +253,25 @@ void _fastcall sub_8001084(int a1)
 
 首先，如果我们要将操作数转为Offset，那么首先需要添加一个对应地址段的segment，因为程序在加载时只识别了以0x08000000开始的segment，所以我们要手动添加以0x40000000开头的segment，添加方法为：[Edit]–[Segments]–[Create segment⋯]，这里的设置如图27-11所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00047_img_in_image_box_310_611_906_1245.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00047_img_in_image_box_310_611_906_1245.webp){ width="48%" }
 
 
-<div style="text-align: center;">图27-11 添加segment界面</div>
+*图27-11 添加segment界面*
 
 其中，End address需要尽可能大，涵盖memory map中所关心的寄存器地址范围即可，但也不宜过大，否则IDA容易卡。点击OK按钮之后，segment就加上了。然后，我们将鼠标放在0x40013800这个数上，按0键，数据就被转换为对应的offset了，如图27-12所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00048_img_in_image_box_157_407_1087_1037.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00048_img_in_image_box_157_407_1087_1037.webp){ width="75%" }
 
 
-<div style="text-align: center;">图27-12 将数据转换为指针的效果</div>
+*图27-12 将数据转换为指针的效果*
 
 
 当然，我们还可以更进一步，将unk_40013800改为寄存器的名字，从memory map中，我们查到0x40013800地址为USART1的基地址，所以这里就将其名字改为USART1，右击rename即可，如图27-13所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00049_img_in_image_box_360_143_864_750.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00049_img_in_image_box_360_143_864_750.webp){ width="41%" }
 
 
-<div style="text-align: center;">图27-13 修改地址名字界面</div>
+*图27-13 修改地址名字界面*
 
 
 向SRAM的地址0x20000000添加segment的方法与此同理，这里不再赘述。全部添加完毕后，我们再看一下反编译窗口，如图27-14所示。
@@ -305,7 +305,7 @@ void _fastcall _noreturn sub_8001084(int a1)
 }
 
 ```
-<div style="text-align: center;">图27-14 修改地址名字后的效果</div>
+*图27-14 修改地址名字后的效果*
 
 
 更进一步的，我们还可以将连续的存储区域改为数组，以及通过一些较为明显的函数可以将其改为猜测的名称，于是程序又变成了如图27-15所示的样子。
@@ -347,7 +347,7 @@ void _fastcall _noreturn sub_8001084(int a1)
 }
 
 ```
-<div style="text-align: center;">图27-15 经过寄存器识别后的伪代码</div>
+*图27-15 经过寄存器识别后的伪代码*
 
 
 这样一来，我们就处理好了特殊功能寄存器以及RAM的地址范围，接下来，我们的分析就容易多了。
@@ -356,30 +356,30 @@ void _fastcall _noreturn sub_8001084(int a1)
 
 继续上面的例子，我们知道，ARM的架构有许多种，IDA虽然可以在一定程度上智能地选择合适的子架构来分析代码，但要想达到最好的分析效果，我们最好指定最精确的属性。如图27-16所示，我们在Processor type选择ARM后，单击右侧的Set按钮，使CPU设置生效，同时，右侧还有一个Processor options按钮，这个就是CPU的高级选项了，下面我们打开来看一下。打开后的界面如图27-17所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00052_img_in_image_box_168_684_1057_1352.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00052_img_in_image_box_168_684_1057_1352.webp){ width="72%" }
 
-<div style="text-align: center;">图27-16 CPU高级选项的进入位置</div>
+*图27-16 CPU高级选项的进入位置*
 
 
 在弹出的界面里，继续点击Edit ARM architecture options按钮，接下来会弹出如图27-18所示的对话框。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00053_img_in_image_box_167_380_1059_1052.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00053_img_in_image_box_167_380_1059_1052.webp){ width="72%" }
 
 
-<div style="text-align: center;">图27-17 CPU高级选项界面</div>
+*图27-17 CPU高级选项界面*
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00054_img_in_image_box_370_146_855_1037.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00054_img_in_image_box_370_146_855_1037.webp){ width="39%" }
 
 
-<div style="text-align: center;">图27-18 CPU架构选项</div>
+*图27-18 CPU架构选项*
 
 
 在前面的介绍中，我们知道，Cortex M架构属于ARMv7-M，而默认的CPU选项是any，即IDA会根据实际情况进行智能分析，那么我们这次就直接选择ARMv7-M，看看IDA将如何做出分析。选择后确认，我们再到入口点0x8000100处看一下，如图27-19所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00055_img_in_image_box_169_132_1085_983.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01021_01080_page_00055_img_in_image_box_169_132_1085_983.webp){ width="74%" }
 
 
-<div style="text-align: center;">图27-19 修改CPU具体架构之后的效果</div>
+*图27-19 修改CPU具体架构之后的效果*
 
 
 我们将会很惊喜地发现，IDA已经正确识别了入口点，并且针对Cortex M的Thumb-2指令集做出了十分准确的分析。这样就能节省不少分析步骤。剩下的分析，就与正常的逆向工程一样了。
@@ -442,23 +442,23 @@ STMicroelectronics STM32F1 Series Device Support即可，其他的Pack可以在�
 
 保存之后则会弹出如图27-21所示的对话框，让我们选择CPU。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00001_img_in_image_box_150_139_1079_1026.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00001_img_in_image_box_150_139_1079_1026.webp){ width="75%" }
 
 
-<div style="text-align: center;">图27-20 MDK创建工程后的保存对话框</div>
+*图27-20 MDK创建工程后的保存对话框*
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00002_img_in_image_box_157_143_1080_832.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00002_img_in_image_box_157_143_1080_832.webp){ width="75%" }
 
 
-<div style="text-align: center;">图27-21 MDK选择CPU界面</div>
+*图27-21 MDK选择CPU界面*
 
 
 由于之前已经下载好了对应的Device Pack，所以这里直接选择了STM32F103CB，至于尾缀可根据需要酌情选择。选择完毕后确认，如果是5.x版本的MDK，则会弹出如图27-22所示的窗口。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00003_img_in_image_box_258_144_975_718.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00003_img_in_image_box_258_144_975_718.webp){ width="58%" }
 
 
-<div style="text-align: center;">图27-22 创建工程后弹出的窗口</div>
+*图27-22 创建工程后弹出的窗口*
 
 
 这个功能是开发时才需要使用的，而我们的需求并不需要这个，所以直接Cancel即可，到这里，就完成了工程的创建了。图27-23所示的就是工程刚刚创建好的示意图。
@@ -466,61 +466,61 @@ STMicroelectronics STM32F1 Series Device Support即可，其他的Pack可以在�
 <div style="text-align: center;">C:\Users\Jiaheng\Desktop\test\test.uvproj - \mu Vision</div>
 
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00004_img_in_image_box_204_183_1022_644.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00004_img_in_image_box_204_183_1022_644.webp){ width="66%" }
 
 
-<div style="text-align: center;">图27-23 MDK主界面</div>
+*图27-23 MDK主界面*
 
 
 接下来，在Source Group 1上单击右键，将我们打算分析的hex文件加入工程，操作如图27-24所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00005_img_in_image_box_199_176_1024_979.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00005_img_in_image_box_199_176_1024_979.webp){ width="67%" }
 
 
-<div style="text-align: center;">图27-24 为工程添加文件</div>
+*图27-24 为工程添加文件*
 
 
 在弹出的对话框中，文件类型选择All Files(*.*)，然后找到我们需要的hex即可，如果是bin文件则与之同理，如图27-25所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00005_img_in_image_box_242_1238_977_1360.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00005_img_in_image_box_242_1238_977_1360.webp){ width="60%" }
 
-<div style="text-align: center;">图27-25 选择文件类型处</div>
+*图27-25 选择文件类型处*
 
 
 单击Add按钮后，会弹出一个以“Get FileType for…”为标题的窗口，直接单击OK按钮即可。至此，待调试的文件就加入工程了。接下来，我们将完成工程的最后设置。右键单击Target 1，选择Options for Target ‘Target 1’，如图27-26所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00006_img_in_image_box_264_502_957_1154.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00006_img_in_image_box_264_502_957_1154.webp){ width="56%" }
 
 
-<div style="text-align: center;">图27-26 工程设置的打开方法</div>
+*图27-26 工程设置的打开方法*
 
 
 接着会弹出如图27-27所示的Options选项卡，选中Debug选项卡，在该页面中选中左上角的Use Simulator，然后去掉选项卡下方的Load
 
 Application at Startup复选框。接下来，单击OK，关闭选项卡即可。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00007_img_in_image_box_156_290_1080_982.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00007_img_in_image_box_156_290_1080_982.webp){ width="75%" }
 
 
-<div style="text-align: center;">图27-27 工程设置界面</div>
+*图27-27 工程设置界面*
 
 
 最后，依次选择Debug→Start/Stop Debug Session或者按 Ctrl+F5 启动仿真调试，进入如图27-28所示的窗口。
 
 ### C:\Users\Jiaheng\Desktop\test\test.uvproj - \uVision
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00008_img_in_image_box_152_180_1082_912.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00008_img_in_image_box_152_180_1082_912.webp){ width="75%" }
 
 
-<div style="text-align: center;">图27-28 调试窗口</div>
+*图27-28 调试窗口*
 
 
 最后一步，在底部的Command窗口中，输入load ConfusedARM.hex，如图27-29所示，回车确认即可。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00009_img_in_image_box_149_138_1081_515.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00009_img_in_image_box_149_138_1081_515.webp){ width="76%" }
 
 
-<div style="text-align: center;">图27-29 在Command窗体输入加载命令</div>
+*图27-29 在Command窗体输入加载命令*
 
 
 然后，单击左上角的RST按钮： $ \text{RST} $，PC指针就会回到hex文件的入口点，如图27-30所示。
@@ -528,17 +528,17 @@ Application at Startup复选框。接下来，单击OK，关闭选项卡即可�
 <div style="text-align: center;">C:\Users\Jiaheng\Desktop\test\test.uvproj - \uVision</div>
 
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00010_img_in_image_box_155_186_1081_919.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00010_img_in_image_box_155_186_1081_919.webp){ width="75%" }
 
 
-<div style="text-align: center;">图27-30 调试开始</div>
+*图27-30 调试开始*
 
 
 下断点的方法为，在要下断点的位置前的灰色或绿色区域单击即可，如图27-31所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00010_img_in_image_box_223_1176_1003_1417.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00010_img_in_image_box_223_1176_1003_1417.webp){ width="63%" }
 
-<div style="text-align: center;">图27-31 Disassembly 窗体下断点</div>
+*图27-31 Disassembly 窗体下断点*
 
 
 调试界面的总体窗口的布局如图27-32所示。
@@ -549,9 +549,9 @@ Application at Startup复选框。接下来，单击OK，关闭选项卡即可�
 File Edit View Project Flash Debug Peripherals Tools SVCS Window Help
 
 ```
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00012_img_in_image_box_152_224_1078_1395.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00012_img_in_image_box_152_224_1078_1395.webp){ width="75%" }
 
-<div style="text-align: center;">图27-32 调试界面总体布局</div>
+*图27-32 调试界面总体布局*
 
 
 另外，寄存器区只有基本的内核寄存器，如果要查看GPIO或USART的寄存器状态，就要用到其中的System Viewer功能了，依次选择Peripherals→System Viewer，如图27-33所示。
@@ -565,21 +565,21 @@ File Edit View Project Flash Debug Peripherals Tools SVCS Window Help
 <div style="text-align: center;">C:\Users\Jiaheng\Desktop\test\test.uvproj - \Vision</div>
 
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00014_img_in_image_box_153_179_1084_843.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00014_img_in_image_box_153_179_1084_843.webp){ width="76%" }
 
 
-<div style="text-align: center;">图27-33 System Viewer打开位置</div>
+*图27-33 System Viewer打开位置*
 
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00014_img_in_image_box_170_973_1055_1369.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00014_img_in_image_box_170_973_1055_1369.webp){ width="72%" }
 
-<div style="text-align: center;">图27-34 UART窗体打开位置</div>
-
-
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00015_img_in_image_box_193_217_1030_543.webp){ width="100%" }
+*图27-34 UART窗体打开位置*
 
 
-<div style="text-align: center;">图27-35 UART窗体显示当前固件的输出</div>
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00015_img_in_image_box_193_217_1030_543.webp){ width="68%" }
+
+
+*图27-35 UART窗体显示当前固件的输出*
 
 
 ### 2. AVR Studio
@@ -594,35 +594,35 @@ AVR Studio是ATMEL公司为其AVR单片机开发的集成环境汇编及开发�
 
 打开AVR Studio之后，默认会弹出Welcome窗口，如图27-36所示，如果没有弹出，那么可以依次选择Project→Project Wizard打开Welcome窗口。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00017_img_in_image_box_172_185_1049_691.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00017_img_in_image_box_172_185_1049_691.webp){ width="71%" }
 
 
-<div style="text-align: center;">图27-36 AVR Studio启动界面</div>
+*图27-36 AVR Studio启动界面*
 
 
 在Welcome窗口中，直接单击Open。文件类型仍然选择All
 
 Files(*.*)，然后选择hex文件或者elf文件。单击Open，进入如图27-37所示的窗口。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00018_img_in_image_box_172_186_1050_693.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00018_img_in_image_box_172_186_1050_693.webp){ width="71%" }
 
 
-<div style="text-align: center;">图27-37 AVR Studio 选择模拟器界面</div>
+*图27-37 AVR Studio 选择模拟器界面*
 
 
 因为我们没有具体的芯片，所以这里选择模拟器AVR Simulator，具体芯片型号根据实际需要进行选择即可。选择完毕后点击Finish按钮，完成之后就进入调试界面，如图27-38所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00019_img_in_image_box_151_143_1083_1252.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00019_img_in_image_box_151_143_1083_1252.webp){ width="76%" }
 
 
-<div style="text-align: center;">图27-38 AVR Studio调试界面</div>
+*图27-38 AVR Studio调试界面*
 
 在调试界面中依次选择View→Memory Window即可打开内存查看器，查看内存中的数据值，但是需要注意的是，AVR单片机为哈弗结构的单片机，因此存储区可分为程序存储区和数据存储区，在实际使用时，要注意选对区域，否则查看到的将是错误的值。如图27-39所示，其中左上角的选择框可以选择当前要查看哪个存储区（程序或数据）。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00020_img_in_image_box_232_530_995_1192.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00020_img_in_image_box_232_530_995_1192.webp){ width="62%" }
 
 
-<div style="text-align: center;">图27-39 内存查看器</div>
+*图27-39 内存查看器*
 
 
 总之，AVR Studio的使用还是非常容易上手的，更多的功能，还请各位读者自行尝试和发现，用多了大家就会发现，AVR Studio确实
@@ -635,33 +635,33 @@ Helmi名字的原意是Helmi’s AVR Periphery Simulator，是一个开源的AVR
 
 在使用Hapsim软件之前，需要先启动AVR Studio，并使用可执行文件，利用前文中讲到的方法创建好工程，然后，启动Hapsim软件即可，如图27-40所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00022_img_in_image_box_293_146_931_755.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00022_img_in_image_box_293_146_931_755.webp){ width="52%" }
 
 
-<div style="text-align: center;">图27-40 Hapsim启动界面</div>
+*图27-40 Hapsim启动界面*
 
 
 这款软件可以模拟1602液晶、数字键盘、IO口以及将TWI或USART转为COM口的功能，可以方便我们与程序之间进行交互。比如，如果我希望使用TWI与程序进行交互，则可以通过依次选择File→New Control→Terminal来创建一个Terminal，如图27-41所示。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00023_img_in_image_box_153_143_1080_754.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00023_img_in_image_box_153_143_1080_754.webp){ width="75%" }
 
 
-<div style="text-align: center;">图27-41 创建Terminal界面</div>
+*图27-41 创建Terminal界面*
 
 
 这样就可以创建一个Terminal了，然后还需要根据实际使用情况进行一些设置，比如，如果想连接TWI和Terminal，就需要在Options→Terminal Settings选项中进行相应的设置，如图27-42和图27-43所示。
 
 如图27-43所示，在Serial模式中选择TWI，同时为了方便，勾选Local Echo前的方框。单击OK按钮之后，就可以通过Terminal窗口和程序的TWI进行通信了，如果是USART，在Serial选项中相应选择USART即可。当然，还有其他的高级技巧，读者可以自行实践和发现。
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00024_img_in_image_box_294_146_928_756.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00024_img_in_image_box_294_146_928_756.webp){ width="51%" }
 
 
-<div style="text-align: center;">图27-42 打开Options选项卡</div>
+*图27-42 打开Options选项卡*
 
-![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00025_img_in_image_box_293_144_929_753.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_01081_01140_page_00025_img_in_image_box_293_144_929_753.webp){ width="51%" }
 
 
-<div style="text-align: center;">图27-43 Terminal Setting窗体</div>
+*图27-43 Terminal Setting窗体*
 
 ### 27.8 反编译工具
 
@@ -734,12 +734,12 @@ Helmi名字的原意是Helmi’s AVR Periphery Simulator，是一个开源的AVR
     3. Datasheet 在逆向中的主要作用是什么？
     4. 为什么需要手动寻找入口点？
     5. IDA 的 CPU 高级选项会影响什么？
-
+    
     #### 进阶
     6. 静态分析发现疑似外设地址后，怎样提高判断可信度？
     7. 何时适合选择动态调试，何时必须先完成静态梳理？
     8. 如何看待反编译器给出的高层伪代码？
-
+    
     #### 参考答案
     1. 固件可能是未知格式、裸机二进制或使用陌生架构，需要人工提供加载和内存信息。
     2. 架构、子型号、指令集、字节序、基地址和内存布局。
@@ -778,3 +778,5 @@ mindmap
 - 芯片 Datasheet 与厂商资料应作为架构和地址判断的依据。
 
 *来源：《CTF特训营》，OCR 全内容保留整理版。*
+
+

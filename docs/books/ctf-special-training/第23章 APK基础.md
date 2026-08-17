@@ -240,11 +240,11 @@ resources. arsc 文件里面存放着 APK 中所使用资源的名字、ID、类
     5. 哪些寄存器通常承载函数调用的前四个参数？
     6. `adb logcat`、`adb push`、`adb forward` 分别用于什么？
     7. APK 解压后 `AndroidManifest.xml`、`classes.dex`、`libs` 各有什么作用？
-
+    
     **进阶**
     8. 为什么跨 ARM/Thumb 状态返回时可能需要使用 `bx lr`？
     9. 面对一个 APK，如何按文件入口规划 Dalvik 与 Native 层的初步分析？
-
+    
     **参考答案**
     1. 通常是 APK 文件或 DEX 文件。
     2. Dalvik 虚拟机层和 Native 层，通常分别由 Java 与 C/C++ 实现。

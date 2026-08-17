@@ -111,9 +111,9 @@ Intel的汇编语言程序语句格式为：
 
 调用惯例是指一系列规则，其规定了在机器层面如何进行函数调用。对于特定的系统来说，它是由应用程序二进制接口（Application Binary Interface，ABI）定义的。x86指令体系中的函数调用如图9-1所示，当发生函数调用时，首先将参数从右向左加入堆栈中，然后通过call指令将函数的返回地址压入堆栈中。最后，在新函数中将之前的ebp保存到堆栈中，同时esp会减去一定的值，留下一部分栈空间给局部变量使用。
 
-![图片](/books/ctf-special-training/assets/chunk_00181_00240_page_00052_img_in_image_box_152_146_1085_1183.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00181_00240_page_00052_img_in_image_box_152_146_1085_1183.webp){ width="76%" }
 
-<div style="text-align: center;">图9-1 x86指令体系中的函数调用示意图</div>
+*图9-1 x86指令体系中的函数调用示意图*
 
 ???+ note "定义：ABI"
     应用程序二进制接口（Application Binary Interface，ABI）定义了调用惯例——在机器层面如何进行函数调用的一整套规则。
@@ -173,17 +173,17 @@ IDA支持的文件类型非常丰富，除了包括PE格式、ELF格式之外，
 
 通过菜单栏中的File→Open，选择要分析的目标程序，得到如图9-2所示的窗口，可以看出，IDA自动识别出了程序为x86_64的ELF程序，直接点击OK即可。
 
-![图片](/books/ctf-special-training/assets/chunk_00181_00240_page_00057_img_in_image_box_153_142_1077_1122.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00181_00240_page_00057_img_in_image_box_153_142_1077_1122.webp){ width="75%" }
 
-<div style="text-align: center;">图9-2 IDA打开文件</div>
+*图9-2 IDA打开文件*
 
 #### 2. IDA主窗口介绍
 
 IDA的主窗口如图9-3所示，主要包括以下几个区域。
 
-![图片](/books/ctf-special-training/assets/chunk_00181_00240_page_00058_img_in_image_box_153_144_1079_1144.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00181_00240_page_00058_img_in_image_box_153_144_1079_1144.webp){ width="75%" }
 
-<div style="text-align: center;">图9-3 IDA主窗口</div>
+*图9-3 IDA主窗口*
 
 ##### （1） 工具栏区域
 
@@ -219,15 +219,15 @@ IDA为每一个数据显示窗口都提供了标签，通过菜单中的View/Ope
 
 如图9-4所示，地址0x4010D9和0x4010DB汇编指令跳转的目标地址为0x4010DF，程序运行到0x4010D9时，必然会跳转到0x4010DF，而不会运行到0x4010DD，所以需要在0x4010DD处使用快捷键D将其转化为数据。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00001_img_in_image_box_194_408_1026_604.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00001_img_in_image_box_194_408_1026_604.webp){ width="67%" }
 
-<div style="text-align: center;">图9-4 IDA错误的反汇编代码</div>
+*图9-4 IDA错误的反汇编代码*
 
 然后，在地址0x4010DF处使用快捷键C将其转化为代码，得到如图9-5所示的结果。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00001_img_in_image_box_191_860_1030_1140.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00001_img_in_image_box_191_860_1030_1140.webp){ width="68%" }
 
-<div style="text-align: center;">图9-5 IDA修正后的反汇编代码</div>
+*图9-5 IDA修正后的反汇编代码*
 
 ##### （3） 数据修正
 
@@ -243,9 +243,9 @@ IDA为每一个数据显示窗口都提供了标签，通过菜单中的View/Ope
 
 对于一些针对不常用处理器架构编写的程序，可以开启汇编的自动注释功能。开启的方式为勾选界面中的Auto comments，如图9-6所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00003_img_in_image_box_158_141_1082_770.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00003_img_in_image_box_158_141_1082_770.webp){ width="75%" }
 
-<div style="text-align: center;">图9-6 IDA开启自动注释功能界面</div>
+*图9-6 IDA开启自动注释功能界面*
 
 ##### （5） 二进制程序的patch
 
@@ -253,9 +253,9 @@ IDA为每一个数据显示窗口都提供了标签，通过菜单中的View/Ope
 
 修改的方法如图9-7所示，依次选择菜单栏中的Edit→Patch program→Change byte功能进行修改。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00004_img_in_image_box_265_144_959_375.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00004_img_in_image_box_265_144_959_375.webp){ width="56%" }
 
-<div style="text-align: center;">图9-7 IDA对程序进行patch</div>
+*图9-7 IDA对程序进行patch*
 
 ##### （6） 交叉引用
 
@@ -292,9 +292,9 @@ Ollydbg（简称OD）是Windows下的一款具有可视化界面的用户态调�
 
 OD主界面如图9-8所示，各部分介绍如下。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00007_img_in_image_box_154_144_1080_1091.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00007_img_in_image_box_154_144_1080_1091.webp){ width="75%" }
 
-<div style="text-align: center;">图9-8 OD主界面</div>
+*图9-8 OD主界面*
 
 - 反汇编窗口：载入程序后，窗口内显示的是程序反汇编后的源代码。
 - 信息窗口：进行动态调试时，窗口内会显示出当前代码行的各个寄存器的信息，或者API函数的调用、跳转等信息，可以用来辅助了解当前代码行的寄存器的运行情况。
@@ -362,9 +362,9 @@ sudo apt-get install gdb
 
 此外，gdb也有很多插件，如peda、gef、pwndbg等，这里的插件提供了一些额外的命令，便于对程序进行逆向分析。这些插件都可以在Github上找到，根据其安装说明进行安装即可。图9-9为gdb安装了peda插件之后运行的界面，可以通过peda help命令查看新增的命令。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00012_img_in_image_box_153_409_1080_861.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00012_img_in_image_box_153_409_1080_861.webp){ width="75%" }
 
-<div style="text-align: center;">图9-9 gdb安装peda插件后的界面</div>
+*图9-9 gdb安装peda插件后的界面*
 
 ##### （2） 基本的调试操作
 
@@ -448,9 +448,9 @@ Qira的官方主页为http://qira.me/，由著名的黑客geohot开发。安装�
 
 浏览器Web界面主要包括以下几个部分。
 
-![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00017_img_in_image_box_153_148_1082_1431.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00241_00300_page_00017_img_in_image_box_153_148_1082_1431.webp){ width="75%" }
 
-<div style="text-align: center;">图9-10 Qira的浏览器Web页面</div>
+*图9-10 Qira的浏览器Web页面*
 
 1）最左边两列为fork，每次用nc连一次4000端口，就会多一个fork。图9-10中的两列表示链接过两次4000端口。
 
@@ -517,12 +517,12 @@ mindmap
     8. OD 中 F2、F7、F8、F9 键分别有什么作用？
     9. gdb 中下断点、查看所有断点、删除断点的命令分别是什么？
     10. Qira 运行时开启了哪两个端口，分别做什么用？
-
+    
     **进阶**
     11. Microsoft x64 ABI 与 SysV x64 ABI 在参数传递上有何区别？
     12. 为什么分析程序时应主要分析程序自身而不是库函数？可以借助哪个窗口区分？
     13. 程序有自校验功能时，为什么不能用一般断点？应该改用哪种断点？
-
+    
     **参考答案**
     1. 静态分析法（不执行代码、观察文件外部特性）与动态分析法（执行过程中用调试器分析，获取内存状态）。
     2. 「操作项 目的操作数，源操作数」；目的/源操作数一般是寄存器、内存地址或立即数。

@@ -3,8 +3,8 @@
     本章讲解 CTF 线下赛中最原始也最正宗的 ==Attack&Defense==（A&D、攻防）模式的战术细节：前半部分按漏洞类型逐一介绍使用 IDA Keypatch 的四大补丁方案（大小修改法、函数替换法、.eh_frame 段 Patch 法与其他半自动化工具）；后半部分提炼攻防实战策略（服务上下线、后门植入、后门清理、流量、强弱者），并在文末给出 PWN 相关学习资料与练习平台，最后收束到第四篇小结。
 ## 章节导航
 
-上一篇：第16章 格式化字符串漏洞
-下一篇：第18章 Crypto基础
+上一篇：[第16章 逻辑漏洞](第16章 逻辑漏洞.md)
+下一篇：[第18章 Crypto概述](第18章 Crypto概述.md)
 回到目录：[00-目录](00-目录.md)
 
 ## 一、Attack&Defense 模式概述
@@ -31,19 +31,19 @@ int __cdecl main(int argc, const char **argv, const char **envp)
 }
 ```
 
-<div style="text-align: center;">图17-1 缓冲区程序的反编译代码</div>
+*图17-1 缓冲区程序的反编译代码*
 
 如图17-1所示，此时“read(0, &buf, 100);”处存在明显的栈溢出，我们可以通过修改read的大小来修补栈溢出漏洞。从代码中我们可以看出，当读入的数据大于0x14时，可能会覆盖ebp，所以我们将read大小修改为小于0x14即可。IDA Patch功能的选项如图17-2所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00040_img_in_image_box_162_152_1074_1420.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00040_img_in_image_box_162_152_1074_1420.webp){ width="74%" }
 
-<div style="text-align: center;">图17-2 IDA Patch功能的选项</div>
+*图17-2 IDA Patch功能的选项*
 
 依次选择Edit→Plugins→Keypatch Patcher，如图17-3所示，将0x64修改为0x10。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00041_img_in_image_box_170_400_1066_1357.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00041_img_in_image_box_170_400_1066_1357.webp){ width="73%" }
 
-<div style="text-align: center;">图17-3 Patcher参数设置</div>
+*图17-3 Patcher参数设置*
 
 点击Patch按钮，然后依次选择Edit→Patch program→Apple patches to input file，保存为二进制文件即可。
 
@@ -83,7 +83,7 @@ int play()
 }
 ```
 
-<div style="text-align: center;">图17-4 程序主逻辑的反编译代码</div>
+*图17-4 程序主逻辑的反编译代码*
 
 如图17-4所示，此时do-fmt()函数的printf是一个明显的格式化字符漏洞，在play函数里存在对puts函数的调用，因此，这里可以将printf替换为puts函数，具体步骤如下。
 
@@ -91,15 +91,15 @@ int play()
 
 2）获取puts的plt地址，该地址为0x80483B0，如图17-5所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00045_img_in_image_box_159_391_1069_689.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00045_img_in_image_box_159_391_1069_689.webp){ width="74%" }
 
-<div style="text-align: center;">图17-5 puts的plt地址</div>
+*图17-5 puts的plt地址*
 
 3）确定被修改指令的下一指令地址为0x8048540，如图17-6所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00046_img_in_image_box_161_157_1066_959.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00046_img_in_image_box_161_157_1066_959.webp){ width="73%" }
 
-<div style="text-align: center;">图17-6 修改位置的反汇编代码</div>
+*图17-6 修改位置的反汇编代码*
 
 4）计算出结果，并进行补码运算，如下：
 
@@ -109,9 +109,9 @@ int play()
 
 5）修改并保存：E860 FE FF->E870 FE FF，如图17-7所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00047_img_in_image_box_171_161_1064_588.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00047_img_in_image_box_171_161_1064_588.webp){ width="72%" }
 
-<div style="text-align: center;">图17-7 Patch Byte的设置</div>
+*图17-7 Patch Byte的设置*
 
 结果展示如图17-8所示。
 
@@ -132,7 +132,7 @@ int do_fmt()
 }
 ```
 
-<div style="text-align: center;">图17-8 patch后的反编译代码</div>
+*图17-8 patch后的反编译代码*
 
 6）依次选择Edit→Patch program→Apply patches to input file，保存到二进制文件。
 
@@ -174,13 +174,13 @@ if ( dword_6041A0 )
 ...
 ```
 
-<div style="text-align: center;">图17-9 漏洞点的关键代码</div>
+*图17-9 漏洞点的关键代码*
 
 如图17-9所示，第14行可能存在uaf风险，需要将释放后的指针置为0，可在.eh_frame段中将指针设为0，此时free的对象为[rdx+rax]，并将该对象赋给rdi。在执行Patch的时候，仍需要保证不影响free的对象。因此在.eh_frame中编写的代码如图17-10所示。
 
-![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00050_img_in_image_box_167_425_1070_815.webp){ width="100%" }
+![图片](/books/ctf-special-training/assets/chunk_00601_00660_page_00050_img_in_image_box_167_425_1070_815.webp){ width="73%" }
 
-<div style="text-align: center;">图17-10 Patch的主要代码</div>
+*图17-10 Patch的主要代码*
 
 将原有指针清零，最后再jmp回原逻辑。
 
