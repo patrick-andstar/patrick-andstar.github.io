@@ -1308,13 +1308,13 @@ pwn(io)
     4. PIE 与 RELRO 分别保护什么？partial relro 与 full relro 的区别是什么？
     5. 程序中内存的四个重要数据部分（从低地址到高地址）分别是什么？
     6. shellcode 一般针对什么场景使用？NX 开启时如何绕过？
-    
+
     **进阶**
     7. ROP 的原理是什么？为什么 NX 开启时还能利用？ret2libc 是什么？
     8. Return-to-dl resolve 的核心思想是什么？适用条件是哪三条？
     9. PWN200 的漏洞是如何触发的？（简述 read 多读 1 字节的利用链）
     10. readable（x64）只有任意地址写、没有读权限，为什么常规方法难，方法一是如何解决泄露问题的？
-    
+
     **参考答案**
     1. 逆向辅助类：IDA Pro、gdb（+peda）；漏洞利用类：pwntools、zio。peda 原版不支持 Python3，用 zachriggle/peda 可兼容。
     2. NX 位 0 允许执行代码、1 禁止执行代码；开启栈可执行加 `-z execstack`，栈保护默认开启，关闭用 `-fno-stack-protector`（关的是 canary）。

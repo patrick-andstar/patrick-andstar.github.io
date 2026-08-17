@@ -41,6 +41,32 @@ nav:
     - 第2章 SQL注入攻击: books/ctf-special-training/第2章 SQL注入攻击.md
     - 第3章 跨站脚本攻击: books/ctf-special-training/第3章 跨站脚本攻击.md
     - 第4章 服务端请求伪造: books/ctf-special-training/第4章 服务端请求伪造.md
+    - 第5章 利用特性进行攻击: books/ctf-special-training/第5章 利用特性进行攻击.md
+    - 第6章 代码审计: books/ctf-special-training/第6章 代码审计.md
+    - 第7章 条件竞争: books/ctf-special-training/第7章 条件竞争.md
+    - 第8章 案例解析: books/ctf-special-training/第8章 案例解析.md
+    - 第9章 Reverse概述: books/ctf-special-training/第9章 Reverse概述.md
+    - 第10章 Reverse分析: books/ctf-special-training/第10章 Reverse分析.md
+    - 第11章 PWN基础: books/ctf-special-training/第11章 PWN基础.md
+    - 第12章 栈相关漏洞: books/ctf-special-training/第12章 栈相关漏洞.md
+    - 第13章 堆相关漏洞: books/ctf-special-training/第13章 堆相关漏洞.md
+    - 第14章 格式化字符串漏洞: books/ctf-special-training/第14章 格式化字符串漏洞.md
+    - 第15章 整型漏洞: books/ctf-special-training/第15章 整型漏洞.md
+    - 第16章 逻辑漏洞: books/ctf-special-training/第16章 逻辑漏洞.md
+    - 第17章 Attack&Defense模式: books/ctf-special-training/第17章 Attack&Defense模式.md
+    - 第18章 Crypto概述: books/ctf-special-training/第18章 Crypto概述.md
+    - 第19章 编码: books/ctf-special-training/第19章 编码.md
+    - 第20章 古典密码: books/ctf-special-training/第20章 古典密码.md
+    - 第21章 现代密码: books/ctf-special-training/第21章 现代密码.md
+    - 第22章 真题解析: books/ctf-special-training/第22章 真题解析.md
+    - 第23章 APK基础: books/ctf-special-training/第23章 APK基础.md
+    - 第24章 Dalvik层逆向分析: books/ctf-special-training/第24章 Dalvik层逆向分析.md
+    - 第25章 Native层逆向: books/ctf-special-training/第25章 Native层逆向.md
+    - 第26章 IoT基础知识: books/ctf-special-training/第26章 IoT基础知识.md
+    - 第27章 IoT固件逆向工程: books/ctf-special-training/第27章 IoT固件逆向工程.md
+    - 第28章 固件结构分析: books/ctf-special-training/第28章 固件结构分析.md
+    - 第29章 无线信号分析: books/ctf-special-training/第29章 无线信号分析.md
+    - 第30章 经典赛题讲解: books/ctf-special-training/第30章 经典赛题讲解.md
 markdown_extensions:
 - admonition
 - attr_list

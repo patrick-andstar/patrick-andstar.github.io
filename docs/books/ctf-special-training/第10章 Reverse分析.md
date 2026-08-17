@@ -1779,13 +1779,13 @@ PWN题型的出题思路大多源于实践，一般是将出现过或者可能�
     4. 求解 flag 的四种手段分别是什么？
     5. IDAPython 主要调用哪三个模块？一个异或解密脚本的要害 API 是哪些？
     6. 花指令、加壳、反调试三种保护各自的基本破解思路是什么？
-    
+
     **进阶**
     7. 为什么 ptrace 反调试「二次调用会失败」？通常如何绕过？
     8. 双进程保护（Debug Blocker）为什么最难逆向？基本破解思路是什么？
     9. 虚拟机保护的通用解题流程是什么？
     10. py2exe 与 pyInstaller 打包的程序分别如何提取并反编译出 Python 源码？
-    
+
     **参考答案**
     1. API 断点法（在 GetWindowText/GetDlgItemText/MessageBox 下断后回溯）、字符串检索法（IDA/OD 搜索字符串）、辅助工具定位法（xspy、Dede 等）。
     2. 代码中引用 64 字节索引表 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/" 即基本可确定；变种 base64 主要是替换了这个索引表。
