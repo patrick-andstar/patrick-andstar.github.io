@@ -41,4 +41,5 @@
 
 - 仓库：[patrick-andstar/patrick-andstar.github.io](https://github.com/patrick-andstar/patrick-andstar.github.io)
 - 推送 `main` 后由 GitHub Actions 构建部署；`mkdocs build --strict` 失败即不发布。
-- 每个目录下的 `.pages` 文件控制导航顺序，新增的 md 会自动出现在导航里，不用手工登记。
+- 每个目录下的 `.pages` 文件控制导航顺序与中文节名。列表末尾的 `...` 表示「未被点名的其余文件，按名称排序自动追加」，
+  所以在任意目录里新丢一个 md 就会自动出现在该节末尾，**不需要改 `.pages`**；想让某篇排到前面，才需要手动加一行。
