@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: 安装依赖
-        run: pip install mkdocs-material mkdocs-glightbox pymdown-extensions
+        run: pip install mkdocs-material mkdocs-glightbox pymdown-extensions mkdocs-awesome-pages-plugin
       - name: 构建站点
         run: mkdocs build --strict
       - name: 上传构建产物（可下载 zip 预览）

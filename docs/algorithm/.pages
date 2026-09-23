@@ -1,0 +1,10 @@
+title: 算法竞赛
+nav:
+  - index.md
+  - "基础算法": basics
+  - "递归与搜索": recursion
+  - "图论": graph
+  - "动态规划": dp
+  - "贪心": greedy
+  - "模拟": simulation
+  - "数据结构": ds
