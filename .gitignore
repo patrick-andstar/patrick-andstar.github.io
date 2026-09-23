@@ -1,3 +1,6 @@
 site/
 __pycache__/
 *.pyc
+
+# 本地 agent 工作笔记（含环境细节、操作日志），不进公开仓库
+.workbuddy/
