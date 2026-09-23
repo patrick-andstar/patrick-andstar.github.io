@@ -57,7 +57,10 @@ markdown_extensions:
 - pymdownx.emoji:
     emoji_index: !!python/name:material.extensions.emoji.twemoji
     emoji_generator: !!python/name:material.extensions.emoji.to_svg
-- pymdownx.highlight
+- pymdownx.highlight:
+    # 让 <code> 带上 language-xxx 类，运行代码的 JS 靠它识别语言。
+    # 默认 false，此时 DOM 里完全看不出代码块是什么语言。
+    pygments_lang_class: true
 - pymdownx.inlinehilite
 - pymdownx.keys
 - pymdownx.magiclink
@@ -76,6 +79,8 @@ plugins:
 
 extra_css:
 - assets/stylesheets/extra.css
+- assets/stylesheets/run-code.css
 extra_javascript:
 - assets/vendor/mathjax/tex-mml-chtml.js
 - assets/vendor/mermaid/mermaid.min.js
+- assets/js/run-code.js

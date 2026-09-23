@@ -1,0 +1,105 @@
+/*
+ * 「运行代码」样式。
+ * 颜色一律走 Material 的 CSS 变量，这样深色模式自动跟着切换，
+ * 不用再写一套 prefers-color-scheme。
+ */
+
+.rc-host {
+  position: relative;
+}
+
+/* 运行按钮：贴在 Material 自带复制按钮的左边。
+   复制按钮的位置是 top:.5rem / right:.5rem，所以这里让出大约一个按钮的宽度。 */
+.rc-btn {
+  position: absolute;
+  top: 0.45rem;
+  right: 2.7rem;
+  z-index: 2;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  font-family: inherit;
+  color: var(--md-default-fg-color--light, #0000008a);
+  background: var(--md-default-bg-color, #fff);
+  border: 1px solid var(--md-default-fg-color--lightest, #0000001f);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, opacity 0.15s;
+}
+
+.rc-btn:hover {
+  color: var(--md-accent-fg-color, #526dd9);
+  border-color: var(--md-accent-fg-color, #526dd9);
+}
+
+.rc-btn:disabled,
+.rc-btn--busy {
+  opacity: 0.65;
+  cursor: default;
+}
+
+/* 输出面板 */
+.rc-out {
+  margin: -0.6rem 0 1rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.72rem;
+  border: 1px solid var(--md-default-fg-color--lightest, #0000001f);
+  border-left-width: 3px;
+  border-left-color: var(--md-default-fg-color--lightest, #0000001f);
+  border-radius: 0.2rem;
+  background: var(--md-code-bg-color, #f5f5f5);
+}
+
+.rc-out:has(.rc-badge--ok)  { border-left-color: #2e7d32; }
+.rc-out:has(.rc-badge--err) { border-left-color: #c62828; }
+.rc-out:has(.rc-badge--run) { border-left-color: #ef9f27; }
+
+.rc-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rc-badge {
+  font-weight: 500;
+  padding: 0.05rem 0.45rem;
+  border-radius: 0.2rem;
+}
+
+.rc-badge--ok  { color: #1b5e20; background: #e3f2e3; }
+.rc-badge--err { color: #b71c1c; background: #fbe6e6; }
+.rc-badge--run { color: #7a4f05; background: #fdf0d8; }
+
+.rc-lang,
+.rc-meta {
+  color: var(--md-default-fg-color--light, #0000008a);
+  font-variant-numeric: tabular-nums;
+}
+
+.rc-label {
+  margin: 0.5rem 0 0.15rem;
+  color: var(--md-default-fg-color--light, #0000008a);
+}
+
+.rc-pre {
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: var(--md-code-font-family, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: var(--md-code-fg-color, inherit);
+  background: transparent;
+}
+
+/* 窄屏：按钮别压住代码首行 */
+@media screen and (max-width: 44.98em) {
+  .rc-btn {
+    top: 0.35rem;
+    right: 2.4rem;
+    font-size: 0.65rem;
+  }
+}
