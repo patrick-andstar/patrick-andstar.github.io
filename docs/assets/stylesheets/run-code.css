@@ -1,21 +1,28 @@
 /*
- * 「运行代码」样式。
+ * 「运行 / 编辑代码」样式。
  * 颜色一律走 Material 的 CSS 变量，这样深色模式自动跟着切换，
- * 不用再写一套 prefers-color-scheme。
+ * 不用再写一套 prefers-color-scheme —— 编辑器内部的配色也同理，
+ * 由 JS 里的 HighlightStyle 直接用 --md-code-hl-* 变量。
  */
 
 .rc-host {
   position: relative;
 }
 
-/* 运行按钮：贴在 Material 自带复制按钮的左边。
-   复制按钮的位置是 top:.5rem / right:.5rem，所以这里让出大约一个按钮的宽度。 */
-.rc-btn {
+/* 工具栏：宽屏贴在 Material 自带复制按钮的左边。
+   复制按钮是 top:.5rem / right:.5rem，所以这里让出大约一个按钮的宽度。
+   窄屏下改用正常流排到代码块下面，见文件末尾的 media query。 */
+.rc-tools {
   position: absolute;
   top: 0.45rem;
   right: 2.7rem;
   z-index: 2;
-  padding: 0.15rem 0.55rem;
+  display: flex;
+  gap: 0.3rem;
+}
+
+.rc-btn {
+  padding: 0.15rem 0.5rem;
   font-size: 0.7rem;
   line-height: 1.5;
   font-family: inherit;
@@ -24,7 +31,7 @@
   border: 1px solid var(--md-default-fg-color--lightest, #0000001f);
   border-radius: 0.25rem;
   cursor: pointer;
-  transition: color 0.15s, border-color 0.15s, opacity 0.15s;
+  transition: color 0.15s, background 0.15s, border-color 0.15s, opacity 0.15s;
 }
 
 .rc-btn:hover {
@@ -32,10 +39,40 @@
   border-color: var(--md-accent-fg-color, #526dd9);
 }
 
+/* 「运行」是主操作，给个强调色，免得三个按钮看起来一样重 */
+.rc-btn--run {
+  color: var(--md-accent-fg-color, #526dd9);
+}
+
+.rc-btn--run:hover {
+  color: var(--md-accent-bg-color, #fff);
+  background: var(--md-accent-fg-color, #526dd9);
+}
+
 .rc-btn:disabled,
 .rc-btn--busy {
   opacity: 0.65;
   cursor: default;
+}
+
+.rc-btn:disabled:hover {
+  color: var(--md-default-fg-color--light, #0000008a);
+  border-color: var(--md-default-fg-color--lightest, #0000001f);
+  background: var(--md-default-bg-color, #fff);
+}
+
+/* 编辑器容器：和 <pre> 互斥显示，位置尺寸都一样，切换时不该跳 */
+.rc-editor .cm-editor {
+  border-radius: 0.1rem;
+}
+
+.rc-editor .cm-editor.cm-focused {
+  outline: none;
+}
+
+/* 长代码在编辑器里自己滚，别把整页撑长 */
+.rc-editor .cm-scroller {
+  max-height: 34rem;
 }
 
 /* 输出面板 */
@@ -71,6 +108,11 @@
 .rc-badge--err { color: #b71c1c; background: #fbe6e6; }
 .rc-badge--run { color: #7a4f05; background: #fdf0d8; }
 
+/* 深色主题下上面三个浅色底太刺眼，换成低饱和的深底 */
+[data-md-color-scheme="slate"] .rc-badge--ok  { color: #a5d6a7; background: #1b3a1e; }
+[data-md-color-scheme="slate"] .rc-badge--err { color: #ef9a9a; background: #3d1c1c; }
+[data-md-color-scheme="slate"] .rc-badge--run { color: #ffcc80; background: #3d2f14; }
+
 .rc-lang,
 .rc-meta {
   color: var(--md-default-fg-color--light, #0000008a);
@@ -95,11 +137,23 @@
   background: transparent;
 }
 
-/* 窄屏：按钮别压住代码首行 */
+/* 窄屏：三个按钮挤在代码首行右侧会压住代码，改成排在代码块下面的一行。
+   这里 .rc-tools 变成正常流，DOM 顺序是 <pre> / 编辑器 / 工具栏，所以它自然落到最下面。 */
 @media screen and (max-width: 44.98em) {
+  .rc-tools {
+    position: static;
+    justify-content: flex-end;
+    margin: 0.4rem 0 0;
+    padding-right: 0.5rem;
+  }
+
   .rc-btn {
-    top: 0.35rem;
-    right: 2.4rem;
+    padding: 0.12rem 0.45rem;
     font-size: 0.65rem;
+  }
+
+  /* 工具栏占了一行高度，输出面板不用再贴那么近 */
+  .rc-out {
+    margin-top: -0.35rem;
   }
 }
