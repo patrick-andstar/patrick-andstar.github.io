@@ -1,0 +1,20 @@
+# 站点构建依赖（锁定版本，保证本机与 GitHub Actions 结果一致）
+#
+# 为什么锁版本：
+#   2026-09 mkdocs.yml 里的 toc.slugify 用了 pymdownx.slugs.uslugify，
+#   而 pymdown-extensions 12.x 已移除该函数 —— CI 装最新版会在
+#   「解析配置文件」阶段直接失败（本机装的是 11.0.1，所以本地能过、线上挂）。
+#   锁版本同时也避免 Material 主题升级导致的渲染漂移。
+#
+# 升级流程：本地改这里 → 删 site/ 重新 build --strict → 无警告再提交。
+#   注意 pymdown-extensions 升到 12.x 前，需先把 mkdocs.yml 的
+#   toc.slugify 改写成下面这种新写法：
+#     slugify: !!python/object/apply:pymdownx.slugs.slugify
+#       kwds:
+#         case: lower
+
+mkdocs==1.6.1
+mkdocs-material==9.7.7
+mkdocs-glightbox==0.5.2
+mkdocs-awesome-pages-plugin==2.10.1
+pymdown-extensions==11.0.1
