@@ -1,0 +1,8 @@
+title: 直觉入门
+nav:
+  - index.md
+  - "陈述与见证": statement-witness.md
+  - "零知识的三种动机": why-zero-knowledge.md
+  - "交互式证明的直觉": interactive-proof.md
+  - "从交互到非交互": fiat-shamir.md
+  - "EZKL七步流水线": ezkl-pipeline.md

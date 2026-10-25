@@ -1,0 +1,6 @@
+title: 哈希函数
+nav:
+  - "哈希的三个安全目标": hash-security-goals.md
+  - "SHA256与Keccak": sha256-keccak.md
+  - "Poseidon与zk友好哈希": poseidon.md
+  - "Fiat-Shamir与transcript": fiat-shamir-transcript.md

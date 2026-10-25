@@ -1,0 +1,5 @@
+title: 证明的三性质
+nav:
+  - "完备性可靠性零知识": completeness-soundness-zk.md
+  - "知识抽取与模拟器": extractor-simulator.md
+  - "可靠性误差与安全参数": soundness-error.md

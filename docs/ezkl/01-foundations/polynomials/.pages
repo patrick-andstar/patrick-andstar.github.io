@@ -1,0 +1,6 @@
+title: 多项式
+nav:
+  - "求值与拉格朗日插值": lagrange-interpolation.md
+  - "单位根与NTT": roots-of-unity-ntt.md
+  - "多项式恒等式与Schwartz-Zippel": schwartz-zippel.md
+  - "低度测试与FRI": fri-low-degree-test.md

@@ -1,0 +1,5 @@
+title: 安全与边界
+nav:
+  - "可信设置假设": trusted-setup-assumption.md
+  - "审计与版本破坏性变更": audit-and-versioning.md
+  - "许可证与商用": license.md

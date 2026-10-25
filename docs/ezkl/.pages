@@ -1,0 +1,12 @@
+title: EZKL 理论
+nav:
+  - "总览": index.md
+  - "术语表": glossary.md
+  - "直觉入门": 00-intuition
+  - "数学地基": 01-foundations
+  - "承诺与哈希": 02-commitments
+  - "算术化": 03-arithmetization
+  - "证明系统": 04-proof-system
+  - "zkML 层": 05-zkml
+  - "工程边界": 06-engineering
+  - "机器学习预备": 07-ml-basics

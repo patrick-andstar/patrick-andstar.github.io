@@ -1,0 +1,6 @@
+title: Halo2协议
+nav:
+  - "证明生成全流程": proof-generation.md
+  - "多开点归约": multiopen.md
+  - "KZG与IPA的取舍": kzg-vs-ipa.md
+  - "递归与聚合证明": recursion-aggregation.md

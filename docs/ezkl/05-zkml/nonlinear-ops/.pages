@@ -1,0 +1,6 @@
+title: 非线性算子
+nav:
+  - "查表近似": lookup-approximation.md
+  - "除法与倒数": division-reciprocal.md
+  - "Softmax与LayerNorm": softmax-layernorm.md
+  - "近似误差与语义正确性": approximation-tolerance.md

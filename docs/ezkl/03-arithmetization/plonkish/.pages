@@ -1,0 +1,7 @@
+title: PLONKish
+nav:
+  - "三类列": three-column-types.md
+  - "选择子与门约束": selectors-and-gates.md
+  - "复制约束与置换论证": copy-constraints-permutation.md
+  - "自定义门": custom-gates.md
+  - "商多项式与恒等式检验": quotient-polynomial.md

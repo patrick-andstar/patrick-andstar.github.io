@@ -1,0 +1,7 @@
+title: 查找表
+nav:
+  - "为什么需要查找表": why-lookup.md
+  - "Plookup原理": plookup.md
+  - "LogUp与对数导数": logup.md
+  - "动态查找与向量查找": dynamic-vector-lookup.md
+  - "表大小与logrows代价": table-size-logrows.md

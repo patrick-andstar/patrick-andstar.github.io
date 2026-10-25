@@ -1,6 +1,6 @@
 # wjc-wiki
 
-> 自用复习知识库。三个板块：**求职** · **算法竞赛** · **论文精读**。
+> 自用复习知识库。四个板块：**求职** · **算法竞赛** · **论文精读** · **EZKL 理论**。
 > 站内搜索 · 页内目录 · 代码复制 · 公式 · 图表。
 
 <div class="grid cards" markdown>
@@ -28,6 +28,14 @@
     AI 智能体安全 · 多模态大模型安全
 
     [:octicons-arrow-right-24: 进入](research/index.md)
+
+-   :material-lock-outline:{ .lg .middle } **EZKL 理论**
+
+    ---
+
+    零知识证明 · Halo2 / KZG · zkML · 8 层 92 个知识点
+
+    [:octicons-arrow-right-24: 进入](ezkl/index.md)
 
 </div>
 

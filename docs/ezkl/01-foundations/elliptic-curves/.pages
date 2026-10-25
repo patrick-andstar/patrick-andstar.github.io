@@ -1,0 +1,6 @@
+title: 椭圆曲线
+nav:
+  - "曲线方程与点加法": curve-point-addition.md
+  - "标量乘法与离散对数": scalar-multiplication.md
+  - "点的表示与压缩序列化": point-compression.md
+  - "BN254与BLS12-381的选型": bn254-vs-bls12-381.md

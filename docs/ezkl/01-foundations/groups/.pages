@@ -1,0 +1,4 @@
+title: 群与代数结构
+nav:
+  - "群与循环群": groups-and-cyclic.md
+  - "双线性配对": bilinear-pairing.md

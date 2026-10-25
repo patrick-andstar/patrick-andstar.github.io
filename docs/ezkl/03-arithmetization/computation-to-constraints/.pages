@@ -1,0 +1,5 @@
+title: 从计算到约束
+nav:
+  - "电路抽象与witness": circuit-and-witness.md
+  - "约束数与行数": constraints-vs-rows.md
+  - "R1CS对照": r1cs.md

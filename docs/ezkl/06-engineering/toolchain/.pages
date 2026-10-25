@@ -1,0 +1,5 @@
+title: 工具链
+nav:
+  - "halo2三件套分工": halo2-stack.md
+  - "pyo3绑定与常驻进程": pyo3-daemon.md
+  - "七个命令与文件格式": seven-commands.md

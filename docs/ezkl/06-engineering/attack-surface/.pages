@@ -1,0 +1,6 @@
+title: 攻击面
+nav:
+  - "witness泄露": witness-leak.md
+  - "量化反演与模型窃取": model-extraction.md
+  - "恶意SRS与有毒废料": malicious-srs.md
+  - "无效曲线点与子群检查": invalid-curve-points.md

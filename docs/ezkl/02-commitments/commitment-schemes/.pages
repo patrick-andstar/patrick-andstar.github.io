@@ -1,0 +1,7 @@
+title: 承诺方案
+nav:
+  - "承诺的隐藏与绑定性": commitment-hiding-binding.md
+  - "哈希承诺与Merkle树": hash-commitment-merkle.md
+  - "KZG多项式承诺": kzg-commitment.md
+  - "可信设置与SRS": trusted-setup-srs.md
+  - "批量打开与多开点": batch-opening.md

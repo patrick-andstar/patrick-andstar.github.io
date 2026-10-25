@@ -1,0 +1,7 @@
+title: 密钥与产物
+nav:
+  - "compile约束系统固化": compile.md
+  - "setup与pk-vk": setup-pk-vk.md
+  - "witness生成与盲化": witness-blinding.md
+  - "prove与verify内部": prove-verify.md
+  - "vk绑定结构还是权重": vk-binds-weights.md

@@ -1,0 +1,5 @@
+title: 性能
+nav:
+  - "成本模型": cost-model.md
+  - "内存与并行": memory-parallelism.md
+  - "GPU加速": gpu-acceleration.md

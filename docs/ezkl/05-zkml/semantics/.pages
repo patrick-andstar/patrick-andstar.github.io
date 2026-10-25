@@ -1,0 +1,7 @@
+title: 语义边界
+nav:
+  - "证明的到底是什么": what-is-proven.md
+  - "五种可见性": five-visibilities.md
+  - "公开输入的承诺化": public-input-commitment.md
+  - "可验证推理vs可验证训练": inference-vs-training.md
+  - "模型完整性vs推理完整性": model-vs-inference-integrity.md

@@ -1,0 +1,7 @@
+title: 定点量化
+nav:
+  - "scale与定点表示": fixed-point-scale.md
+  - "量化误差与校准": quantization-calibration.md
+  - "溢出为何仍能出合法证明": overflow-still-valid.md
+  - "范围检查与bits": range-check-bits.md
+  - "精度与规模的权衡": precision-vs-size.md

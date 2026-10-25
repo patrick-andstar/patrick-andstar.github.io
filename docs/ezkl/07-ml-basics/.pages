@@ -1,0 +1,12 @@
+title: 机器学习预备
+nav:
+  - index.md
+  - "神经网络就是矩阵乘加": neural-net-as-matmul.md
+  - "张量与形状": tensors-and-shapes.md
+  - "卷积与感受野": convolution-receptive-field.md
+  - "激活函数": activation-functions.md
+  - "归一化与Softmax": normalization-softmax.md
+  - "推理与训练的区别": training-vs-inference.md
+  - "模型导出与ONNX": export-onnx.md
+  - "什么是量化": what-is-quantization.md
+  - "残差连接与ResNet": residual-resnet.md
