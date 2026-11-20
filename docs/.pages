@@ -3,4 +3,6 @@ nav:
   - "求职": job
   - "算法竞赛": algorithm
   - "论文精读": research
+  - "EZKL 理论": ezkl
+  - "ZKP 图谱": https://patrick-andstar.github.io/zkp-atlas/
   - ...
