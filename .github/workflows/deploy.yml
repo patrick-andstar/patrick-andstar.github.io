@@ -5,6 +5,13 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# 同一个分组内串行执行，避免连续推送时「先发起的旧提交后完成」把新内容覆盖掉。
+# 2026-11-20 实测踩到：两次 API 提交相隔 1 秒，旧提交的部署晚了 5 秒完成，
+# 结果线上回退到旧版本（页面少了导航项）。
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 permissions:
   contents: read
   pages: write
