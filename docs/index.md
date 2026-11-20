@@ -2,6 +2,7 @@
 
 > 自用复习知识库。四个板块：**求职** · **算法竞赛** · **论文精读** · **EZKL 理论**。
 > 站内搜索 · 页内目录 · 代码复制 · 公式 · 图表。
+> 另有独立站点 **ZKP 技术图谱**（33 个模块，零基础前置到工程实现）。
 
 <div class="grid cards" markdown>
 
@@ -36,6 +37,14 @@
     零知识证明 · Halo2 / KZG · zkML · 8 层 92 个知识点
 
     [:octicons-arrow-right-24: 进入](ezkl/index.md)
+
+-   :material-graph-outline:{ .lg .middle } **ZKP 图谱**
+
+    ---
+
+    独立站点 · 33 个模块 · 从群、域、单位根讲到 zkVM
+
+    [:octicons-arrow-right-24: 打开](https://patrick-andstar.github.io/zkp-atlas/){ target="_blank" }
 
 </div>
 
